@@ -7,6 +7,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "./components/ui/resizable";
+import Loader from "./components/loader";
 
 function App() {
   const { loading, handleRunCode } = usePyodide();
@@ -29,11 +30,13 @@ function App() {
           <div className="h-full w-full overflow-auto p-2">
             <div className="output">
               {error ? (
-                <span className="text-red-500">{error}</span>
+                <pre className="text-red-500">{error}</pre>
               ) : (
-                <span>{output}</span>
+                <pre>{output}</pre>
               )}
-              <p>{loading ? "Loading..." : ""}</p>
+              {loading && (
+                <Loader text="Downloading Pyodide, Python interpreter" />
+              )}
             </div>
           </div>
         </ResizablePanel>

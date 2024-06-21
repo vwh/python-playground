@@ -3,6 +3,7 @@ import { useStore } from "../store";
 import MonacoEditor from "@monaco-editor/react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import Loader from "./loader";
 
 interface EditorProps {
   handleRunCode: () => void;
@@ -21,6 +22,7 @@ export default function Editor({ handleRunCode }: EditorProps) {
         defaultValue="console.log('hello world')"
         theme="vs-dark"
         value={code}
+        loading=<Loader text="Loading Editor" />
         onChange={(e) => {
           if (e) setCode(e);
         }}
@@ -30,11 +32,11 @@ export default function Editor({ handleRunCode }: EditorProps) {
         <Button
           onClick={() => setCode("")}
           variant="destructive"
-          className="grow"
+          className="w-1/3"
         >
           Delete
         </Button>
-        <Button onClick={handleRunCode} className="grow">
+        <Button variant="outline" onClick={handleRunCode} className="grow">
           Run
         </Button>
       </div>
