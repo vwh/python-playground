@@ -28,7 +28,11 @@ function App() {
         <ResizablePanel defaultSize={50}>
           <div className="h-full w-full overflow-auto p-2">
             <div className="output">
-              <pre>{output}</pre>
+              {error ? (
+                <span className="text-red-500">{error}</span>
+              ) : (
+                <span>{output}</span>
+              )}
               <p>{loading ? "Loading..." : ""}</p>
             </div>
           </div>

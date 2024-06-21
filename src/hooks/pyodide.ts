@@ -15,6 +15,7 @@ export const usePyodide = () => {
   const handleRunCode = async () => {
     if (pyodide) {
       try {
+        setError(null);
         const printOutput: string[] = [];
         pyodide.globals.set("print", (...args: any[]) => {
           const result = args.join(" ");
