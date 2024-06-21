@@ -29,8 +29,9 @@ export default function Editor({ handleRunCode }: EditorProps) {
         defaultValue="console.log('hello world')"
         theme="vs-dark"
         value={code}
-        loading=<Loader text="Loading Editor" />
+        className="relative"
         onChange={handleCodeOnChange}
+        loading=<Loader text="Loading Editor" />
       />
       <Separator />
       <div className="bg-background flex w-full gap-2 p-2 pb-3">

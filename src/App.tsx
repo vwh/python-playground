@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useStore } from "./store";
 import { usePyodide } from "./hooks/pyodide";
+
+import { getDecodedParam } from "./lib/urlUtils";
 
 import Editor from "./components/editor";
 import {
@@ -13,7 +15,18 @@ import { TopNav } from "./components/top-nav";
 
 function App() {
   const { loading, handleRunCode } = usePyodide();
-  const { output, error, direction } = useStore();
+  const { output, error, direction, setCode } = useStore();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const encodedParam = urlParams.get("v");
+    if (encodedParam) {
+      const decodedCode = getDecodedParam(encodedParam);
+      if (decodedCode) {
+        setCode(decodedCode);
+      }
+    }
+  }, []);
 
   return (
     <main className="h-screen flex flex-col">
