@@ -9,7 +9,8 @@ interface EditorProps {
 }
 
 export default function Editor({ handleRunCode }: EditorProps) {
-  const { code, output, error, setCode, setOutput, setError } = useStore();
+  const { code, setCode } = useStore();
+
   return (
     <div
       dir="ltr"
@@ -33,7 +34,7 @@ export default function Editor({ handleRunCode }: EditorProps) {
         >
           Delete
         </Button>
-        <Button onClick={handleRunCode} variant="outline" className="grow">
+        <Button onClick={handleRunCode} className="grow">
           Run
         </Button>
       </div>
