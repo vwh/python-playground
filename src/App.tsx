@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useStore } from "./store";
 import { usePyodide } from "./hooks/pyodide";
+
 import { Button } from "./components/ui/button";
+import Editor from "./components/editor";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "./components/ui/resizable";
 
 function App() {
   const [pyodide, loading] = usePyodide();
-
-  const [code, setCode] = useState<string>(
-    "print(1 + 2)\nprint('Hello from Pyodide')"
-  );
-
-  const [output, setOutput] = useState<string>("");
+  const { code, output, error, setCode, setOutput, setError } = useStore();
 
   const handleRunCode = async () => {
     if (pyodide) {
@@ -24,27 +26,35 @@ function App() {
         await pyodide.runPythonAsync(code);
       } catch (error) {
         console.error(error);
+        if (error instanceof Error) {
+          setError(error.message);
+        }
       }
     }
   };
 
   return (
-    <div className="App">
+    <main className="h-screen flex flex-col">
       <h1>Pyodide in React</h1>
-      <div className="code-editor">
-        <textarea
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="Enter Python code here..."
-        />
-        <Button onClick={handleRunCode}>Run</Button>
-      </div>
-      <div className="output">
-        <h2>Output:</h2>
-        <pre>{output}</pre>
-        <p>{loading ? "Loading..." : ""}</p>
-      </div>
-    </div>
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="rounded-none border"
+      >
+        <ResizablePanel defaultSize={50}>
+          <Editor handleRunCode={handleRunCode} />
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={50}>
+          <div className="h-full w-full overflow-auto">
+            <div className="output">
+              <h2>Output:</h2>
+              <pre>{output}</pre>
+              <p>{loading ? "Loading..." : ""}</p>
+            </div>
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </main>
   );
 }
 
