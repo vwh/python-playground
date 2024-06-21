@@ -32,19 +32,27 @@ export function TopNav() {
   }
 
   return (
-    <section className="flex gap-2 justify-center items-center p-2">
-      <Button variant="outline" onClick={handleChangeDirection}>
-        <Replace className="h-5 w-5" />
-        <span className="ml-2">Direction</span>
-      </Button>
-      <Button variant="outline" onClick={downloadCode}>
-        <Download className="h-5 w-5" />
-        <span className="ml-2">Download</span>
-      </Button>
-      <Button variant="outline" onClick={shareCode}>
-        <Upload className="h-5 w-5" />
-        <span className="ml-2">Share</span>
-      </Button>
+    <section className="flex gap-2 justify-between p-2">
+      <a
+        className="absolute hidden md:block hover:opacity-80"
+        href="https://github.com/vwh/python-playground"
+      >
+        <img src="logo.webp" alt="logo" className="h-10 w-10" />
+      </a>
+      <div className="flex gap-2 justify-center items-center grow">
+        <Button variant="outline" onClick={handleChangeDirection}>
+          <Replace className="h-5 w-5" />
+          <span className="ml-2">Direction</span>
+        </Button>
+        <Button variant="outline" onClick={downloadCode}>
+          <Download className="h-5 w-5" />
+          <span className="ml-2">Download</span>
+        </Button>
+        <Button variant="outline" onClick={shareCode}>
+          <Upload className="h-5 w-5" />
+          <span className="ml-2">Share</span>
+        </Button>
+      </div>
     </section>
   );
 }
