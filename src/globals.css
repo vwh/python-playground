@@ -35,3 +35,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+.markdown-body pre {
+  direction: ltr;
+  @apply bg-background rounded border !important;
+}
+
+.markdown-body {
+  background: none !important;
+}
+
+.monaco-editor .minimap,
+.iPadShowKeyboard {
+  display: none;
+}

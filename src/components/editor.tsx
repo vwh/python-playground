@@ -12,25 +12,30 @@ interface EditorProps {
 export default function Editor({ handleRunCode }: EditorProps) {
   const { code, setCode } = useStore();
 
+  function handleCodeDelete() {
+    setCode("");
+  }
+
+  function handleCodeOnChange(e: string | undefined) {
+    if (e) {
+      setCode(e);
+    }
+  }
+
   return (
-    <div
-      dir="ltr"
-      className="flex h-full flex-col items-center justify-center bg-[#1E1E1E] pt-4"
-    >
+    <div className="flex h-full flex-col items-center justify-center bg-[#1E1E1E] pt-4">
       <MonacoEditor
         defaultLanguage="python"
         defaultValue="console.log('hello world')"
         theme="vs-dark"
         value={code}
         loading=<Loader text="Loading Editor" />
-        onChange={(e) => {
-          if (e) setCode(e);
-        }}
+        onChange={handleCodeOnChange}
       />
       <Separator />
-      <div className="bg-background flex w-full gap-2 p-2">
+      <div className="bg-background flex w-full gap-2 p-2 pb-3">
         <Button
-          onClick={() => setCode("")}
+          onClick={handleCodeDelete}
           variant="destructive"
           className="w-1/3"
         >

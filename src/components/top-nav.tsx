@@ -3,15 +3,11 @@ import { useStore } from "../store";
 import { Button } from "./ui/button";
 import { Replace, Download, Upload } from "lucide-react";
 
-interface TopNavProps {
-  setDirection: React.Dispatch<React.SetStateAction<"horizontal" | "vertical">>;
-}
-
-export function TopNav({ setDirection }: TopNavProps) {
-  const { code } = useStore();
+export function TopNav() {
+  const { code, setDirection, direction } = useStore();
 
   function handleChangeDirection() {
-    setDirection((prev) => (prev === "vertical" ? "horizontal" : "vertical"));
+    setDirection(direction === "vertical" ? "horizontal" : "vertical");
   }
 
   function downloadCode() {

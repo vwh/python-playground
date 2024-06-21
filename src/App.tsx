@@ -12,15 +12,12 @@ import Loader from "./components/loader";
 import { TopNav } from "./components/top-nav";
 
 function App() {
-  const [direction, setDirection] = useState<"horizontal" | "vertical">(
-    "vertical"
-  );
   const { loading, handleRunCode } = usePyodide();
-  const { output, error } = useStore();
+  const { output, error, direction } = useStore();
 
   return (
     <main className="h-screen flex flex-col">
-      <TopNav setDirection={setDirection} />
+      <TopNav />
       <ResizablePanelGroup
         direction={direction}
         className="rounded-none border"

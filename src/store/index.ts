@@ -7,6 +7,8 @@ type State = {
   setCode: (code: string) => void;
   setOutput: (output: string) => void;
   setError: (error: string | null) => void;
+  direction: "horizontal" | "vertical";
+  setDirection: (direction: "horizontal" | "vertical") => void;
 };
 
 export const useStore = create<State>((set) => ({
@@ -16,4 +18,6 @@ export const useStore = create<State>((set) => ({
   setCode: (code) => set((state) => ({ ...state, code })),
   setOutput: (output) => set((state) => ({ ...state, output })),
   setError: (error) => set((state) => ({ ...state, error })),
+  direction: "vertical",
+  setDirection: (direction) => set((state) => ({ ...state, direction })),
 }));
