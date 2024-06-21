@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useStore } from "./store";
 import { usePyodide } from "./hooks/pyodide";
 
@@ -8,25 +9,27 @@ import {
   ResizablePanelGroup,
 } from "./components/ui/resizable";
 import Loader from "./components/loader";
+import { TopNav } from "./components/top-nav";
 
 function App() {
+  const [direction, setDirection] = useState<"horizontal" | "vertical">(
+    "vertical"
+  );
   const { loading, handleRunCode } = usePyodide();
   const { output, error } = useStore();
 
   return (
     <main className="h-screen flex flex-col">
-      <section className="flex p-2">
-        <h1>Pyodide in React</h1>
-      </section>
+      <TopNav setDirection={setDirection} />
       <ResizablePanelGroup
-        direction="horizontal"
+        direction={direction}
         className="rounded-none border"
       >
-        <ResizablePanel defaultSize={50}>
+        <ResizablePanel defaultSize={70}>
           <Editor handleRunCode={handleRunCode} />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={50}>
+        <ResizablePanel defaultSize={30}>
           <div className="h-full w-full overflow-auto p-2">
             <div className="output">
               {error ? (

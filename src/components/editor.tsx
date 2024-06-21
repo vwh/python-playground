@@ -36,7 +36,7 @@ export default function Editor({ handleRunCode }: EditorProps) {
         >
           Delete
         </Button>
-        <Button variant="outline" onClick={handleRunCode} className="grow">
+        <Button variant="secondary" onClick={handleRunCode} className="grow">
           Run
         </Button>
       </div>
