@@ -10,9 +10,9 @@ declare global {
 export const usePyodide = () => {
   const [pyodide, setPyodide] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
-  const { code, setOutput, setError } = useStore();
+  const { setOutput, setError } = useStore();
 
-  const handleRunCode = async () => {
+  const handleRunCode = async (code: string) => {
     if (pyodide) {
       try {
         setError(null);

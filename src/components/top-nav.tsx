@@ -13,14 +13,7 @@ import {
 } from "./ui/drawer";
 import { Input } from "./ui/input";
 
-import {
-  Replace,
-  Download,
-  Upload,
-  Play,
-  Settings,
-  FileJson,
-} from "lucide-react";
+import { Replace, Download, Upload, Play, Settings, Trash } from "lucide-react";
 
 declare global {
   interface Window {
@@ -36,7 +29,15 @@ interface TopNavProps {
 }
 
 export default function TopNav({ handleRunCode }: TopNavProps) {
-  const { code, setDirection, direction, setError, setOutput } = useStore();
+  const {
+    code,
+    setCode,
+    setDirection,
+    direction,
+    setError,
+    setOutput,
+    clearOutput,
+  } = useStore();
 
   function handleChangeDirection() {
     setDirection(direction === "vertical" ? "horizontal" : "vertical");
@@ -53,6 +54,11 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
     document.body.removeChild(link);
   }
 
+  function handleCodeDelete() {
+    setCode("");
+    clearOutput("Running Python 3.12.1");
+  }
+
   function shareCode() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("v", btoa(code));
@@ -65,18 +71,19 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
 
   async function installPipPackage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const packageName = e.currentTarget.lib.value;
-    console.log(packageName);
-
-    if (window.micropip) {
-      const lib = packageName.replace("pip install ", "");
-      try {
-        await window.micropip.install(lib, true);
-        setOutput(`pip install ${lib} successfully installed`);
-        setError(null);
-      } catch (e) {
-        if (e instanceof Error) {
-          setError(`Failed to install ${lib}, ${e.message}`);
+    if (e) {
+      const packageName = e.currentTarget.lib.value;
+      console.log(packageName);
+      if (window.micropip) {
+        const lib = packageName.replace("pip install ", "");
+        try {
+          await window.micropip.install(lib, true);
+          setOutput(`pip install ${lib} successfully installed`);
+          setError(null);
+        } catch (e) {
+          if (e instanceof Error) {
+            setError(`Failed to install ${lib}, ${e.message}`);
+          }
         }
       }
     }
@@ -89,9 +96,13 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
           <Play className="h-5 w-5" />
           <span className="ml-2">Run</span>
         </Button>
+        <Button onClick={handleCodeDelete} variant="secondary">
+          <Trash className="h-5 w-5" />
+          <span className="ml-2 hidden md:inline">Delete</span>
+        </Button>
         <Button variant="outline" onClick={handleChangeDirection}>
           <Replace className="h-5 w-5" />
-          <span className="ml-2">Direction</span>
+          <span className="ml-2 hidden md:inline">Direction</span>
         </Button>
         <Drawer>
           <DrawerTrigger asChild>
@@ -139,10 +150,6 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
                     <Button variant="outline" onClick={shareCode}>
                       <Upload className="h-5 w-5" />
                       <span className="ml-2">Share Code</span>
-                    </Button>
-                    <Button variant="outline">
-                      <FileJson className="h-5 w-5" />
-                      <span className="ml-2">Code Minifier</span>
                     </Button>
                   </div>
                 </div>

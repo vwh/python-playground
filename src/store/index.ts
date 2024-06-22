@@ -4,20 +4,29 @@ type State = {
   code: string;
   output: string;
   error: string | null;
-  setCode: (code: string) => void;
-  setOutput: (output: string) => void;
-  setError: (error: string | null) => void;
   direction: "horizontal" | "vertical";
+};
+
+type Actions = {
+  setCode: (code: string) => void;
+  setOutput: (newOutput: string) => void;
+  clearOutput: (defaultValue?: string) => void;
+  setError: (error: string | null) => void;
   setDirection: (direction: "horizontal" | "vertical") => void;
 };
 
-export const useStore = create<State>((set) => ({
+export const useStore = create<State & Actions>((set) => ({
   code: `import sys\n\nprint("Python", sys.version)`,
-  output: "",
+  output: "Running Python 3.12.1",
   error: null,
-  setCode: (code) => set((state) => ({ ...state, code })),
-  setOutput: (output) => set((state) => ({ ...state, output })),
-  setError: (error) => set((state) => ({ ...state, error })),
   direction: "vertical",
-  setDirection: (direction) => set((state) => ({ ...state, direction })),
+  setCode: (code) => set({ code }),
+  setOutput: (newOutput) =>
+    set((state) => ({
+      output: state.output + "\n" + newOutput,
+    })),
+  clearOutput: (defaultValue) =>
+    set({ output: defaultValue ? defaultValue : "" }),
+  setError: (error) => set({ error }),
+  setDirection: (direction) => set({ direction }),
 }));
