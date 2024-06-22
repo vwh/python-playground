@@ -1,7 +1,18 @@
 import { useStore } from "../store";
 
 import { Button } from "./ui/button";
-import { Replace, Download, Upload, Play } from "lucide-react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer";
+
+import { Replace, Download, Upload, Play, Settings } from "lucide-react";
 
 interface TopNavProps {
   handleRunCode: () => Promise<void>;
@@ -46,14 +57,42 @@ export function TopNav({ handleRunCode }: TopNavProps) {
           <Replace className="h-5 w-5" />
           <span className="ml-2">Direction</span>
         </Button>
-        <Button variant="outline" onClick={downloadCode}>
-          <Download className="h-5 w-5" />
-          <span className="ml-2">Download</span>
-        </Button>
-        <Button variant="outline" onClick={shareCode}>
-          <Upload className="h-5 w-5" />
-          <span className="ml-2">Share</span>
-        </Button>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button variant="outline">
+              <Settings className="h-5 w-5" />
+              <span className="ml-2">Settings</span>
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <div className="mx-auto w-full max-w-md">
+              <DrawerHeader>
+                <DrawerTitle>Settings</DrawerTitle>
+                <DrawerDescription>
+                  Personalize your site experience here.
+                </DrawerDescription>
+              </DrawerHeader>
+              <div className="p-4 pb-0 flex flex-col gap-2">
+                <Button variant="outline" onClick={downloadCode}>
+                  <Download className="h-5 w-5" />
+                  <span className="ml-2">Download Code</span>
+                </Button>
+                <Button variant="outline" onClick={shareCode}>
+                  <Upload className="h-5 w-5" />
+                  <span className="ml-2">Share Code</span>
+                </Button>
+                {/* <Button onClick={codeMinifier}>
+                Code Minifier <MinifierIcon className="w-5 h-5 ml-2" />
+              </Button> */}
+              </div>
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button variant="outline">Close</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </div>
+          </DrawerContent>
+        </Drawer>
       </div>
     </section>
   );
