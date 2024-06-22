@@ -30,17 +30,17 @@ function App() {
 
   return (
     <main className="h-screen flex flex-col">
-      <TopNav />
+      <TopNav handleRunCode={handleRunCode} />
       <ResizablePanelGroup
         direction={direction}
         className="rounded-none border"
       >
         <ResizablePanel defaultSize={70}>
-          <Editor handleRunCode={handleRunCode} />
+          <Editor />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={30}>
-          <div className="h-full w-full overflow-auto p-2">
+          <div className="w-full overflow-auto p-2">
             <div className="output">
               {error ? (
                 <pre className="text-red-500">{error}</pre>

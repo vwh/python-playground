@@ -1,20 +1,11 @@
 import { useStore } from "../store";
 
 import MonacoEditor from "@monaco-editor/react";
-import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import Loader from "./loader";
 
-interface EditorProps {
-  handleRunCode: () => void;
-}
-
-export default function Editor({ handleRunCode }: EditorProps) {
+export default function Editor() {
   const { code, setCode } = useStore();
-
-  function handleCodeDelete() {
-    setCode("");
-  }
 
   function handleCodeOnChange(e: string | undefined) {
     if (e) {
@@ -34,18 +25,6 @@ export default function Editor({ handleRunCode }: EditorProps) {
         loading=<Loader text="Loading Editor" />
       />
       <Separator />
-      <div className="bg-background flex w-full gap-2 p-2 pb-3">
-        <Button
-          onClick={handleCodeDelete}
-          variant="destructive"
-          className="w-1/3"
-        >
-          Delete
-        </Button>
-        <Button variant="secondary" onClick={handleRunCode} className="grow">
-          Run
-        </Button>
-      </div>
     </div>
   );
 }

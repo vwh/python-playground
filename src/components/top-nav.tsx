@@ -1,9 +1,13 @@
 import { useStore } from "../store";
 
 import { Button } from "./ui/button";
-import { Replace, Download, Upload } from "lucide-react";
+import { Replace, Download, Upload, Play } from "lucide-react";
 
-export function TopNav() {
+interface TopNavProps {
+  handleRunCode: () => Promise<void>;
+}
+
+export function TopNav({ handleRunCode }: TopNavProps) {
   const { code, setDirection, direction } = useStore();
 
   function handleChangeDirection() {
@@ -33,13 +37,11 @@ export function TopNav() {
 
   return (
     <section className="flex gap-2 justify-between p-2">
-      <a
-        className="absolute hidden md:block hover:opacity-80"
-        href="https://github.com/vwh/python-playground"
-      >
-        <img src="logo.webp" alt="logo" className="h-10 w-10" />
-      </a>
       <div className="flex gap-2 justify-center items-center grow">
+        <Button onClick={handleRunCode} variant="secondary">
+          <Play className="h-5 w-5" />
+          <span className="ml-2">Run</span>
+        </Button>
         <Button variant="outline" onClick={handleChangeDirection}>
           <Replace className="h-5 w-5" />
           <span className="ml-2">Direction</span>
