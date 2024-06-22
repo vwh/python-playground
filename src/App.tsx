@@ -16,7 +16,7 @@ import Stats from "./components/stats";
 
 function App() {
   const { loading, handleRunCode } = usePyodide();
-  const { output, error, direction, setCode, code } = useStore();
+  const { output, error, direction, setCode, code, setOutput } = useStore();
   const [terminalCode, setTerminalCode] = useState("");
   const outputRef = useRef<HTMLPreElement>(null); // Ref for the <pre> element
 
@@ -45,6 +45,7 @@ function App() {
     e.preventDefault();
     if (e) {
       const fromTerminalCode: string = e.currentTarget.terminalCode.value;
+      setOutput(fromTerminalCode);
       await handleRunCode(fromTerminalCode);
       setTerminalCode("");
     }
