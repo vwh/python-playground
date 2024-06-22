@@ -11,7 +11,8 @@ import {
   ResizablePanelGroup,
 } from "./components/ui/resizable";
 import Loader from "./components/loader";
-import { TopNav } from "./components/top-nav";
+import TopNav from "./components/top-nav";
+import Stats from "./components/stats";
 
 function App() {
   const { loading, handleRunCode } = usePyodide();
@@ -35,12 +36,12 @@ function App() {
         direction={direction}
         className="rounded-none border"
       >
-        <ResizablePanel defaultSize={70}>
+        <ResizablePanel defaultSize={65}>
           <Editor />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={30}>
-          <pre className="bg-black h-full w-full text-white overflow-x-auto p-4">
+        <ResizablePanel defaultSize={35}>
+          <pre className="bg-[#141110] h-full w-full text-white overflow-x-auto p-4">
             {loading ? (
               <Loader text="Downloading Python" />
             ) : (
@@ -50,12 +51,13 @@ function App() {
                   (error ? "text-red-500" : "text-white")
                 }
               >
-                {error ? error : output}
+                {error ? error : output ? output : "Running Python 3.12.1"}
               </code>
             )}
           </pre>
         </ResizablePanel>
       </ResizablePanelGroup>
+      <Stats />
     </main>
   );
 }

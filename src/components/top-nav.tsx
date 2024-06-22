@@ -35,7 +35,7 @@ interface TopNavProps {
   handleRunCode: () => Promise<void>;
 }
 
-export function TopNav({ handleRunCode }: TopNavProps) {
+export default function TopNav({ handleRunCode }: TopNavProps) {
   const { code, setDirection, direction, setError, setOutput } = useStore();
 
   function handleChangeDirection() {
@@ -63,7 +63,6 @@ export function TopNav({ handleRunCode }: TopNavProps) {
     navigator.clipboard.writeText(newUrl);
   }
 
-  // form submission
   async function installPipPackage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const packageName = e.currentTarget.lib.value;
@@ -84,7 +83,7 @@ export function TopNav({ handleRunCode }: TopNavProps) {
   }
 
   return (
-    <section className="flex gap-2 justify-between p-2">
+    <section className="flex gap-2 justify-between p-2 bg-[#141110]">
       <div className="flex gap-2 justify-center items-center grow">
         <Button onClick={handleRunCode} variant="secondary">
           <Play className="h-5 w-5" />
@@ -115,7 +114,7 @@ export function TopNav({ handleRunCode }: TopNavProps) {
                     Download libraries
                   </p>
                   <form
-                    className="border p-2 flex gap-1"
+                    className="border rounded p-2 flex gap-1"
                     onSubmit={installPipPackage}
                   >
                     <Input
@@ -132,7 +131,7 @@ export function TopNav({ handleRunCode }: TopNavProps) {
                   <p className="text-sm text-muted-foreground mb-1">
                     Share your code
                   </p>
-                  <div className="border p-2 flex flex-col gap-1">
+                  <div className="border rounded p-2 flex flex-col gap-1">
                     <Button variant="outline" onClick={downloadCode}>
                       <Download className="h-5 w-5" />
                       <span className="ml-2">Download Code</span>
