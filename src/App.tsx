@@ -40,18 +40,20 @@ function App() {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={30}>
-          <div className="w-full overflow-auto p-2">
-            <div className="output">
-              {error ? (
-                <pre className="text-red-500">{error}</pre>
-              ) : (
-                <pre>{output}</pre>
-              )}
-              {loading && (
-                <Loader text="Downloading Pyodide, Python interpreter" />
-              )}
-            </div>
-          </div>
+          <pre className="bg-black h-full w-full text-white overflow-x-auto p-4">
+            {loading ? (
+              <Loader text="Downloading Pyodide, Python interpreter" />
+            ) : (
+              <code
+                className={
+                  "w-full font-mono text-sm " +
+                  (error ? "text-red-500" : "text-white")
+                }
+              >
+                {error ? error : output}
+              </code>
+            )}
+          </pre>
         </ResizablePanel>
       </ResizablePanelGroup>
     </main>
