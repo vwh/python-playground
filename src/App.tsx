@@ -42,7 +42,7 @@ function App() {
         <ResizablePanel defaultSize={30}>
           <pre className="bg-black h-full w-full text-white overflow-x-auto p-4">
             {loading ? (
-              <Loader text="Downloading Pyodide, Python interpreter" />
+              <Loader text="Downloading Python" />
             ) : (
               <code
                 className={

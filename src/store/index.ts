@@ -12,7 +12,7 @@ type State = {
 };
 
 export const useStore = create<State>((set) => ({
-  code: "print(1 + 2)\nprint('Hello from Pyodide')",
+  code: `import sys\n\nprint("Python", sys.version)`,
   output: "",
   error: null,
   setCode: (code) => set((state) => ({ ...state, code })),

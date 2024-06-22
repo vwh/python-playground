@@ -32,38 +32,24 @@ export const usePyodide = () => {
     }
   };
 
-  const installPackage = async (packageName: string) => {
-    if (pyodide && pyodide.micropip) {
-      const lib = packageName.replace("pip install ", "");
-      try {
-        await pyodide.micropip.install(lib);
-        setOutput(`pip install ${lib} successfully installed`);
-        setError(null);
-      } catch (e) {
-        if (e instanceof Error) {
-          setError(`Failed to install ${lib}, ${e.message}`);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
     const load = async () => {
       if (!window.loadPyodide) {
         console.error("Pyodide script not loaded.");
         return;
       }
+
       const pyodideInstance = await window.loadPyodide();
+      setPyodide(pyodideInstance);
 
       await pyodideInstance.loadPackage("micropip");
       const micropip = await pyodideInstance.pyimport("micropip");
-      pyodideInstance.micropip = micropip;
+      window.micropip = micropip;
 
-      setPyodide(pyodideInstance);
       setLoading(false);
     };
     load();
   }, []);
 
-  return { pyodide, loading, handleRunCode, installPackage };
+  return { pyodide, loading, handleRunCode };
 };

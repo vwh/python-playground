@@ -1,5 +1,4 @@
 import { useStore } from "../store";
-import { usePyodide } from "../hooks/pyodide";
 
 import { Button } from "./ui/button";
 import {
@@ -23,13 +22,21 @@ import {
   FileJson,
 } from "lucide-react";
 
+declare global {
+  interface Window {
+    loadPyodide: () => Promise<any>;
+    micropip: {
+      install: (packages: string, keep_going?: boolean) => Promise<void>;
+    };
+  }
+}
+
 interface TopNavProps {
   handleRunCode: () => Promise<void>;
 }
 
 export function TopNav({ handleRunCode }: TopNavProps) {
-  const { code, setDirection, direction } = useStore();
-  const { installPackage } = usePyodide();
+  const { code, setDirection, direction, setError, setOutput } = useStore();
 
   function handleChangeDirection() {
     setDirection(direction === "vertical" ? "horizontal" : "vertical");
@@ -59,7 +66,21 @@ export function TopNav({ handleRunCode }: TopNavProps) {
   // form submission
   async function installPipPackage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await installPackage(e.currentTarget.lib.value);
+    const packageName = e.currentTarget.lib.value;
+    console.log(packageName);
+
+    if (window.micropip) {
+      const lib = packageName.replace("pip install ", "");
+      try {
+        await window.micropip.install(lib, true);
+        setOutput(`pip install ${lib} successfully installed`);
+        setError(null);
+      } catch (e) {
+        if (e instanceof Error) {
+          setError(`Failed to install ${lib}, ${e.message}`);
+        }
+      }
+    }
   }
 
   return (
