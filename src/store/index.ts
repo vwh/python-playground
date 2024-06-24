@@ -16,7 +16,7 @@ type Actions = {
 };
 
 export const useStore = create<State & Actions>((set) => ({
-  code: `import sys\n\nprint("Python", sys.version)`,
+  code: `import sys\n\nprint("Python", sys.version)\n\n# https://vwh.github.io/python-playground/`,
   output: "Running Python 3.12.1",
   error: null,
   direction: "vertical",
