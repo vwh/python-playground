@@ -1,25 +1,26 @@
-# python-playground
+# Python Playground
 
-Browser based Python playground
-Made using (Web Assembly [Pyodide](https://pyodide.org/en/stable/)) and ReactJS
+A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
 
----
+![Python Playground Interface](https://github.com/vwh/python-playground/assets/172333718/69f6b009-2c76-457b-a786-6a1aa9666454)
 
-1. **Clone the Repository**
+## Getting Started
 
-   ```sh
-   git clone https://github.com/vwh/python-playground
-   cd python-playground
-   ```
+### Clone the Repository
 
-2. **Install Dependencies**
+```sh
+git clone https://github.com/vwh/python-playground
+cd python-playground
+```
 
-   ```sh
-   npm install
-   ```
+### Install Dependencies
 
-3. **Start the Development Server**
+```sh
+npm install
+```
 
-   ```sh
-   npm run dev
-   ```
+### Start the Development Server
+
+```sh
+npm run dev
+```
