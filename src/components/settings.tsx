@@ -1,4 +1,5 @@
 import { useStore } from "../store";
+import { useState } from "react";
 
 import {
   Drawer,
@@ -13,7 +14,12 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
-import { Download, Upload, Settings as SettingsIcon } from "lucide-react";
+import {
+  Download,
+  Upload,
+  Settings as SettingsIcon,
+  Loader,
+} from "lucide-react";
 declare global {
   interface Window {
     micropip: {
@@ -24,6 +30,7 @@ declare global {
 
 export default function Settings() {
   const { code, setOutput, setError } = useStore();
+  const [isLibLoading, setIsLibLoading] = useState(false);
 
   function handleDownloadCode() {
     const blob = new Blob([code], { type: "text/plain" });
@@ -44,6 +51,7 @@ export default function Settings() {
       if (window.micropip) {
         const lib = packageName.replace("pip install ", "");
         try {
+          setIsLibLoading(true);
           await window.micropip.install(lib, true);
           setOutput(`pip install ${lib} successfully installed`);
           setError(null);
@@ -51,6 +59,8 @@ export default function Settings() {
           if (e instanceof Error) {
             setError(`Failed to install ${lib}, ${e.message}`);
           }
+        } finally {
+          setIsLibLoading(false);
         }
       }
     }
@@ -90,9 +100,18 @@ export default function Settings() {
                 className="border rounded p-2 flex gap-1"
                 onSubmit={handlePipInstall}
               >
-                <Input type="text" name="lib" placeholder="pip install numpy" />
-                <Button variant="outline" type="submit">
-                  <Download className="h-5 w-5" />
+                <Input
+                  type="text"
+                  name="lib"
+                  placeholder="pip install numpy"
+                  disabled={isLibLoading}
+                />
+                <Button variant="outline" type="submit" disabled={isLibLoading}>
+                  {isLibLoading ? (
+                    <Loader className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Download className="h-5 w-5" />
+                  )}
                 </Button>
               </form>
             </div>
