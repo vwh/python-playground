@@ -10,14 +10,13 @@ interface TopNavProps {
 }
 
 export default function TopNav({ handleRunCode }: TopNavProps) {
-  const { setCode, setDirection, direction, clearOutput } = useStore();
+  const { setDirection, direction, clearOutput } = useStore();
 
   function handleChangeDirection() {
     setDirection(direction === "vertical" ? "horizontal" : "vertical");
   }
 
   function handleCodeDelete() {
-    setCode("");
     clearOutput("Running Python 3.12.1");
   }
 
