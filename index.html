@@ -44,15 +44,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      defer
     />
-    <!-- Pyodide -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
-    <script type="module" crossorigin src="/python-playground/assets/index-CMm2M54j.js"></script>
-    <link rel="stylesheet" crossorigin href="/python-playground/assets/index-BAyT-gDW.css">
+    <!-- Critical CSS -->
+    <style>
+      body {
+        font-family: "Fira Mono", monospace;
+        /* Add any other critical styles here */
+      }
+    </style>
+    <!-- Pyodide (deferred) -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"
+    ></script>
+    <script type="module" crossorigin src="/python-playground/assets/index-BTFrDqkA.js"></script>
+    <link rel="stylesheet" crossorigin href="/python-playground/assets/index-JO_Ap9Ij.css">
   <link rel="manifest" href="/python-playground/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/python-playground/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
+
+    <!-- Defer non-critical JavaScript -->
   </body>
 </html>
