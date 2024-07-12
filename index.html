@@ -52,10 +52,9 @@
     <style>
       body {
         font-family: "Fira Mono", monospace;
-        /* Add any other critical styles here */
       }
     </style>
-    <!-- Pyodide (deferred) -->
+    <!-- Pyodide -->
     <script
       defer
       src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"
@@ -63,8 +62,22 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Defer non-critical JavaScript -->
     <script type="module" src="/src/main.tsx" defer></script>
+    <noscript>
+      <div class="no-js-message">
+        <h1>JavaScript Required</h1>
+        <p>
+          We're sorry, but this application requires JavaScript to function
+          correctly. Please enable JavaScript in your browser and reload the
+          page.
+        </p>
+      </div>
+      <style>
+        .no-js-message {
+          text-align: center;
+          margin-top: 20%;
+        }
+      </style>
+    </noscript>
   </body>
 </html>
