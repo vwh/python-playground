@@ -10,7 +10,7 @@ interface TopNavProps {
 }
 
 export default function TopNav({ handleRunCode }: TopNavProps) {
-  const { setDirection, direction, clearOutput } = useStore();
+  const { setDirection, direction, clearOutput, setError } = useStore();
 
   function handleChangeDirection() {
     setDirection(direction === "vertical" ? "horizontal" : "vertical");
@@ -18,6 +18,7 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
 
   function handleCodeDelete() {
     clearOutput("Running Python 3.12.1");
+    setError(null);
   }
 
   return (
@@ -29,7 +30,7 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
         </Button>
         <Button onClick={handleCodeDelete} variant="secondary">
           <Trash className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Delete</span>
+          <span className="ml-2 hidden md:inline">Clear Terminal</span>
         </Button>
         <Button variant="outline" onClick={handleChangeDirection}>
           <Replace className="h-5 w-5" />
