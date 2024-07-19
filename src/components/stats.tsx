@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useStore } from "../store";
+import { useStore } from "@/store";
 
 export default function Stats() {
   const { code } = useStore();

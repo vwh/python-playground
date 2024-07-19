@@ -1,4 +1,4 @@
-import { useStore } from "../store";
+import { useStore } from "@/store";
 
 import MonacoEditor from "@monaco-editor/react";
 import { Separator } from "./ui/separator";

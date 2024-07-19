@@ -12,6 +12,17 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vwh/python-playground.git"
+  },
+  "keywords": [
+    "python",
+    "browser",
+    "react"
+  ],
+  "author": "vwh",
+  "license": "MIT",
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-dialog": "^1.1.1",

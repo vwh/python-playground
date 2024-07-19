@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useStore } from "../store";
+import { useStore } from "@/store";
 
 import Loader from "./loader";
 
