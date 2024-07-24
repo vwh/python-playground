@@ -1,4 +1,8 @@
-# Python Playground [(Preview)](https://vwh.github.io/python-playground/)
+# Python Playground
+
+[![Codeql Badge](https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/codeql.yml)
+[![Check Format Badge](https://github.com/vwh/python-playground/actions/workflows/format.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/format.yml)
+[![Lint Badge](https://github.com/vwh/python-playground/actions/workflows/lint.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/lint.yml)
 
 A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
 
@@ -24,4 +28,3 @@ npm install
 ```sh
 npm run dev
 ```
-
