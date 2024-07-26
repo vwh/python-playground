@@ -1,10 +1,25 @@
-# Python Playground
+<div align="center">
+    <h1>Python Playground</h1>
+</div>
 
-[![Codeql Badge](https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/codeql.yml)
-[![Check Format Badge](https://github.com/vwh/python-playground/actions/workflows/format.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/format.yml)
-[![Lint Badge](https://github.com/vwh/python-playground/actions/workflows/lint.yml/badge.svg)](https://github.com/vwh/python-playground/actions/workflows/lint.yml)
+<div align="center">
+  <a href="https://app.codacy.com/gh/vwh/python-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade">
+    <img src="https://app.codacy.com/project/badge/Grade/1a8379b2399b45278a710145f92eab5d" alt="Codacy Badge"/>
+  </a>
+  <a href="https://github.com/vwh/python-playground/actions/workflows/codeql.yml">
+    <img src="https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg" alt="Codeql Badge"/>
+  </a>
+  <a href="https://github.com/vwh/python-playground/actions/workflows/format.yml">
+    <img src="https://github.com/vwh/python-playground/actions/workflows/format.yml/badge.svg" alt="Check Format Badge"/>
+  </a>
+  <a href="https://github.com/vwh/python-playground/actions/workflows/lint.yml">
+    <img src="https://github.com/vwh/python-playground/actions/workflows/lint.yml/badge.svg" alt="Lint Badge"/>
+  </a>
+</div>
 
-A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
+<p align="center">
+    A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.s
+</p>
 
 <p align="center">
     <img src="https://github.com/vwh/python-playground/assets/172333718/69f6b009-2c76-457b-a786-6a1aa9666454" alt="Preview">
