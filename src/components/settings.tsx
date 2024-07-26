@@ -9,7 +9,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
+  DrawerTrigger
 } from "./ui/drawer";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -18,7 +18,7 @@ import {
   Download,
   Upload,
   Settings as SettingsIcon,
-  Loader,
+  Loader
 } from "lucide-react";
 declare global {
   interface Window {
@@ -91,13 +91,13 @@ export default function Settings() {
               Personalize your site experience here.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0 flex flex-col gap-2">
+          <div className="flex flex-col gap-2 p-4 pb-0">
             <div>
-              <p className="text-sm text-muted-foreground mb-1">
+              <p className="mb-1 text-sm text-muted-foreground">
                 Download libraries
               </p>
               <form
-                className="border rounded p-2 flex gap-1"
+                className="flex gap-1 rounded border p-2"
                 onSubmit={handlePipInstall}
               >
                 <Input
@@ -116,10 +116,10 @@ export default function Settings() {
               </form>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">
+              <p className="mb-1 text-sm text-muted-foreground">
                 Share your code
               </p>
-              <div className="border rounded p-2 flex flex-col gap-1">
+              <div className="flex flex-col gap-1 rounded border p-2">
                 <Button variant="outline" onClick={handleDownloadCode}>
                   <Download className="h-5 w-5" />
                   <span className="ml-2">Download Code</span>

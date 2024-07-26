@@ -36,7 +36,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
   return (
     <pre
       ref={outputRef}
-      className="bg-[#141110] h-full w-full text-white overflow-x-auto p-4"
+      className="h-full w-full overflow-x-auto bg-[#141110] p-4 text-white"
     >
       {loading ? (
         <Loader text="Downloading Python" />
@@ -50,7 +50,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
           {error ? error : output}
           <br />
           <form
-            className="flex gap-1 items-center"
+            className="flex items-center gap-1"
             onSubmit={terminalCodeSubmit}
           >
             <p>{">>"}</p>
@@ -58,7 +58,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
               value={terminalCode}
               name="terminalCode"
               onChange={(e) => setTerminalCode(e.target.value)}
-              className="text-white bg-transparent border-none outline-none"
+              className="border-none bg-transparent text-white outline-none"
               autoComplete="off"
               placeholder="..."
             />

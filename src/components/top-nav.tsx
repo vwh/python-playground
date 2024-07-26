@@ -22,8 +22,8 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
   }
 
   return (
-    <section className="flex gap-2 justify-between p-2 bg-[#141110]">
-      <div className="flex gap-2 justify-center items-center grow">
+    <section className="flex justify-between gap-2 bg-[#141110] p-2">
+      <div className="flex grow items-center justify-center gap-2">
         <Button onClick={handleRunCode} variant="secondary">
           <Play className="h-5 w-5" />
           <span className="ml-2">Run</span>

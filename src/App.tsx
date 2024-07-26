@@ -8,7 +8,7 @@ import Editor from "./components/editor";
 import {
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup,
+  ResizablePanelGroup
 } from "./components/ui/resizable";
 import TopNav from "./components/top-nav";
 import Stats from "./components/stats";
@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <main className="h-screen flex flex-col">
+    <main className="flex h-screen flex-col">
       <TopNav handleRunCode={async () => await handleRunCode(code)} />
       <ResizablePanelGroup
         direction={direction}

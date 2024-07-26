@@ -6,7 +6,9 @@
 
 A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
 
-![Python Playground Interface](https://github.com/vwh/python-playground/assets/172333718/69f6b009-2c76-457b-a786-6a1aa9666454)
+<p align="center">
+    <img src="https://github.com/vwh/python-playground/assets/172333718/69f6b009-2c76-457b-a786-6a1aa9666454" alt="Preview">
+</p>
 
 ## Getting Started
 
