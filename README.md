@@ -18,7 +18,7 @@
 </div>
 
 <p align="center">
-    A browser-based Python playground built using Web Assembly ([Pyodide](https://pyodide.org/en/stable/)) and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.s
+    A browser-based Python playground built using Web Assembly <a target="_blank" href="https://pyodide.org/en/stable/">Pyodide</a> and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.s
 </p>
 
 <p align="center">
