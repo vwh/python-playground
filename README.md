@@ -3,9 +3,6 @@
 </div>
 
 <div align="center">
-  <a href="https://app.codacy.com/gh/vwh/python-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade">
-    <img src="https://app.codacy.com/project/badge/Grade/1a8379b2399b45278a710145f92eab5d" alt="Codacy Badge"/>
-  </a>
   <a href="https://github.com/vwh/python-playground/actions/workflows/codeql.yml">
     <img src="https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg" alt="Codeql Badge"/>
   </a>
