@@ -3,7 +3,7 @@ import { useStore } from "@/store";
 import { Button } from "./ui/button";
 import Settings from "./settings";
 
-import { Replace, Play, Trash } from "lucide-react";
+import { ReplaceIcon, PlayIcon, TrashIcon } from "lucide-react";
 
 interface TopNavProps {
   handleRunCode: () => Promise<void>;
@@ -25,15 +25,15 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
     <section className="flex justify-between gap-2 bg-[#141110] p-2">
       <div className="flex grow items-center justify-center gap-2">
         <Button onClick={handleRunCode} variant="secondary">
-          <Play className="h-5 w-5" />
+          <PlayIcon className="h-5 w-5" />
           <span className="ml-2">Run</span>
         </Button>
         <Button onClick={handleCodeDelete} variant="secondary">
-          <Trash className="h-5 w-5" />
+          <TrashIcon className="h-5 w-5" />
           <span className="ml-2 hidden md:inline">Clear Terminal</span>
         </Button>
         <Button variant="outline" onClick={handleChangeDirection}>
-          <Replace className="h-5 w-5" />
+          <ReplaceIcon className="h-5 w-5" />
           <span className="ml-2 hidden md:inline">Direction</span>
         </Button>
         <Settings />

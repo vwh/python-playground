@@ -15,11 +15,12 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
 import {
-  Download,
-  Upload,
-  Settings as SettingsIcon,
-  Loader
+  DownloadIcon,
+  UploadIcon,
+  SettingsIcon,
+  LoaderIcon
 } from "lucide-react";
+
 declare global {
   interface Window {
     micropip: {
@@ -108,9 +109,9 @@ export default function Settings() {
                 />
                 <Button variant="outline" type="submit" disabled={isLibLoading}>
                   {isLibLoading ? (
-                    <Loader className="h-5 w-5 animate-spin" />
+                    <LoaderIcon className="h-5 w-5 animate-spin" />
                   ) : (
-                    <Download className="h-5 w-5" />
+                    <DownloadIcon className="h-5 w-5" />
                   )}
                 </Button>
               </form>
@@ -121,11 +122,11 @@ export default function Settings() {
               </p>
               <div className="flex flex-col gap-1 rounded border p-2">
                 <Button variant="outline" onClick={handleDownloadCode}>
-                  <Download className="h-5 w-5" />
+                  <DownloadIcon className="h-5 w-5" />
                   <span className="ml-2">Download Code</span>
                 </Button>
                 <Button variant="outline" onClick={handleShareCode}>
-                  <Upload className="h-5 w-5" />
+                  <UploadIcon className="h-5 w-5" />
                   <span className="ml-2">Share Code</span>
                 </Button>
               </div>
