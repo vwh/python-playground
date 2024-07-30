@@ -79,7 +79,7 @@ export default function Settings() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">
+        <Button variant="secondary">
           <SettingsIcon className="h-5 w-5" />
           <span className="ml-2 hidden md:inline">Settings</span>
         </Button>
@@ -87,27 +87,29 @@ export default function Settings() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-md">
           <DrawerHeader>
-            <DrawerTitle>Settings</DrawerTitle>
+            <DrawerTitle className="text-foreground">Settings</DrawerTitle>
             <DrawerDescription>
               Personalize your site experience here.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="flex flex-col gap-2 p-4 pb-0">
+          <div className="flex flex-col gap-4 p-4 pb-0">
             <div>
               <p className="mb-1 text-sm text-muted-foreground">
                 Download libraries
               </p>
-              <form
-                className="flex gap-1 rounded border p-2"
-                onSubmit={handlePipInstall}
-              >
+              <form className="flex gap-1" onSubmit={handlePipInstall}>
                 <Input
                   type="text"
                   name="lib"
+                  className="text-foreground"
                   placeholder="pip install numpy"
                   disabled={isLibLoading}
                 />
-                <Button variant="outline" type="submit" disabled={isLibLoading}>
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  disabled={isLibLoading}
+                >
                   {isLibLoading ? (
                     <LoaderIcon className="h-5 w-5 animate-spin" />
                   ) : (
@@ -117,15 +119,13 @@ export default function Settings() {
               </form>
             </div>
             <div>
-              <p className="mb-1 text-sm text-muted-foreground">
-                Share your code
-              </p>
-              <div className="flex flex-col gap-1 rounded border p-2">
-                <Button variant="outline" onClick={handleDownloadCode}>
+              <p className="mb-1 text-sm text-foreground">Share your code</p>
+              <div className="flex flex-col gap-1">
+                <Button variant="secondary" onClick={handleDownloadCode}>
                   <DownloadIcon className="h-5 w-5" />
                   <span className="ml-2">Download Code</span>
                 </Button>
-                <Button variant="outline" onClick={handleShareCode}>
+                <Button variant="secondary" onClick={handleShareCode}>
                   <UploadIcon className="h-5 w-5" />
                   <span className="ml-2">Share Code</span>
                 </Button>
@@ -134,7 +134,7 @@ export default function Settings() {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button variant="secondary">Close</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

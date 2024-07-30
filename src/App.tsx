@@ -32,10 +32,7 @@ function App() {
   return (
     <main className="flex h-screen flex-col">
       <TopNav handleRunCode={async () => await handleRunCode(code)} />
-      <ResizablePanelGroup
-        direction={direction}
-        className="rounded-none border"
-      >
+      <ResizablePanelGroup direction={direction}>
         <ResizablePanel defaultSize={65}>
           <Editor />
         </ResizablePanel>

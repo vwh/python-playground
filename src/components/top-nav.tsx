@@ -2,6 +2,8 @@ import { useStore } from "@/store";
 
 import { Button } from "./ui/button";
 import Settings from "./settings";
+import ModeToggle from "./mode-toggle";
+import { Separator } from "./ui/separator";
 
 import { ReplaceIcon, PlayIcon, TrashIcon } from "lucide-react";
 
@@ -22,22 +24,26 @@ export default function TopNav({ handleRunCode }: TopNavProps) {
   }
 
   return (
-    <section className="flex justify-between gap-2 bg-[#141110] p-2">
-      <div className="flex grow items-center justify-center gap-2">
-        <Button onClick={handleRunCode} variant="secondary">
-          <PlayIcon className="h-5 w-5" />
-          <span className="ml-2">Run</span>
-        </Button>
-        <Button onClick={handleCodeDelete} variant="secondary">
-          <TrashIcon className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Clear Terminal</span>
-        </Button>
-        <Button variant="outline" onClick={handleChangeDirection}>
-          <ReplaceIcon className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Direction</span>
-        </Button>
-        <Settings />
-      </div>
-    </section>
+    <>
+      <section className="flex justify-between gap-2 bg-background p-2">
+        <div className="flex grow items-center justify-center gap-2">
+          <Button onClick={handleRunCode} variant="secondary">
+            <PlayIcon className="h-5 w-5" />
+            <span className="ml-2">Run</span>
+          </Button>
+          <Button onClick={handleCodeDelete} variant="secondary">
+            <TrashIcon className="h-5 w-5" />
+            <span className="ml-2 hidden md:inline">Clear Terminal</span>
+          </Button>
+          <Button variant="secondary" onClick={handleChangeDirection}>
+            <ReplaceIcon className="h-5 w-5" />
+            <span className="ml-2 hidden md:inline">Direction</span>
+          </Button>
+          <Settings />
+          <ModeToggle />
+        </div>
+      </section>
+      <Separator />
+    </>
   );
 }

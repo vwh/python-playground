@@ -36,7 +36,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
   return (
     <pre
       ref={outputRef}
-      className="h-full w-full overflow-x-auto bg-[#141110] p-4 text-white"
+      className="h-full w-full overflow-x-auto bg-background p-4"
     >
       {loading ? (
         <Loader text="Downloading Python" />
@@ -44,7 +44,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
         <code
           className={
             "w-full font-mono text-sm " +
-            (error ? "text-red-500" : "text-white")
+            (error ? "text-red-500" : "text-foreground")
           }
         >
           {error ? error : output}
@@ -58,7 +58,7 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
               value={terminalCode}
               name="terminalCode"
               onChange={(e) => setTerminalCode(e.target.value)}
-              className="border-none bg-transparent text-white outline-none"
+              className="border-none bg-transparent text-foreground outline-none"
               autoComplete="off"
               placeholder="..."
             />

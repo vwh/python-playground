@@ -15,7 +15,7 @@ export default function Stats() {
 
   return (
     <section className="absolute bottom-2 left-0 right-0 z-[99] flex items-center justify-center">
-      <div className="rounded bg-secondary px-2 font-mono text-sm">
+      <div className="rounded bg-secondary px-2 font-mono text-sm text-foreground">
         <span>
           {stats.lines} Lines, {stats.words} Words, {stats.characters}{" "}
           Characters

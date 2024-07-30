@@ -33,8 +33,8 @@ const ResizableHandle = ({
     {...props}
   >
     {withHandle && (
-      <div className="z-[99] flex h-16 w-4 items-center justify-center rounded border bg-background">
-        <GripVerticalIcon className="h-[12px] w-[12px]" />
+      <div className="z-[99] flex h-16 w-4 items-center justify-center rounded border bg-background dark:border-secondary">
+        <GripVerticalIcon className="h-[12px] w-[12px] text-foreground" />
       </div>
     )}
   </ResizablePrimitive.PanelResizeHandle>
