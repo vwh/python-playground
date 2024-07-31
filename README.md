@@ -2,6 +2,10 @@
     <h1>Python Playground</h1>
 </div>
 
+<p align="center">
+    Browser-based Python playground built using Web Assembly <a target="_blank" href="https://pyodide.org/en/stable/">Pyodide</a> and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
+</p>
+
 <div align="center">
   <a href="https://github.com/vwh/python-playground/actions/workflows/codeql.yml">
     <img src="https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg" alt="Codeql Badge"/>
@@ -14,13 +18,11 @@
   </a>
 </div>
 
-<p align="center">
-    A browser-based Python playground built using Web Assembly <a target="_blank" href="https://pyodide.org/en/stable/">Pyodide</a> and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.s
-</p>
+<br>
 
-<p align="center">
-    <img src="https://github.com/vwh/python-playground/assets/172333718/69f6b009-2c76-457b-a786-6a1aa9666454" alt="Preview">
-</p>
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/a9424902-46ea-4d39-8553-10d779b43e98" alt="Preview">
+</div>
 
 ## Getting Started
 
