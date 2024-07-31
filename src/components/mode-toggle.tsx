@@ -1,6 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 
 import { Button } from "@/components/ui/button";
+
 import { MoonIcon, SunIcon } from "lucide-react";
 
 export default function ModeToggle() {

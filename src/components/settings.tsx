@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { useStore } from "@/store";
-import { useState } from "react";
 
 import {
   Drawer,
@@ -21,67 +21,59 @@ import {
   LoaderIcon
 } from "lucide-react";
 
-declare global {
-  interface Window {
-    micropip: {
-      install: (packages: string, keep_going?: boolean) => Promise<void>;
-    };
-  }
-}
-
 export default function Settings() {
   const { code, setOutput, setError } = useStore();
   const [isLibLoading, setIsLibLoading] = useState(false);
 
-  function handleDownloadCode() {
+  const handleDownloadCode = () => {
     const blob = new Blob([code], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.download = "code.py";
     link.href = url;
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
-  }
+    URL.revokeObjectURL(url);
+  };
 
-  async function handlePipInstall(e: React.FormEvent<HTMLFormElement>) {
+  const handlePipInstall = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (e) {
-      const packageName = e.currentTarget.lib.value;
-      console.log(packageName);
-      if (window.micropip) {
-        const lib = packageName.replace("pip install ", "");
-        try {
-          setIsLibLoading(true);
-          await window.micropip.install(lib, true);
-          setOutput(`pip install ${lib} successfully installed`);
-          setError(null);
-        } catch (e) {
-          if (e instanceof Error) {
-            setError(`Failed to install ${lib}, ${e.message}`);
-          }
-        } finally {
-          setIsLibLoading(false);
-        }
-      }
-    }
-  }
+    const form = e.currentTarget;
+    const packageName = (form.elements.namedItem("lib") as HTMLInputElement)
+      .value;
+    const lib = packageName.replace("pip install ", "").trim();
 
-  function handleShareCode() {
+    if (!window.micropip || !lib) return;
+
+    setIsLibLoading(true);
+    try {
+      await window.micropip.install(lib, true);
+      setOutput(`pip install ${lib} successfully installed`);
+      setError(null);
+    } catch (e) {
+      setError(`Failed to install ${lib}: ${(e as Error).message}`);
+    } finally {
+      setIsLibLoading(false);
+    }
+  };
+
+  const handleShareCode = () => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("v", btoa(code));
-    const newUrl = `${window.location.origin}${
-      window.location.pathname
-    }?${urlParams.toString()}${window.location.hash}`;
+    const newUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}${window.location.hash}`;
     window.history.replaceState({}, document.title, newUrl);
     navigator.clipboard.writeText(newUrl);
-  }
+  };
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="secondary">
+        <Button
+          title="Toggle settings drawer"
+          variant="secondary"
+          className="flex items-center space-x-2"
+        >
           <SettingsIcon className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Settings</span>
+          <span className="hidden md:inline">Settings</span>
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -92,7 +84,7 @@ export default function Settings() {
               Personalize your site experience here.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="flex flex-col gap-4 p-4 pb-0">
+          <div className="flex flex-col gap-4 px-4 py-2 pb-0">
             <div>
               <p className="mb-1 text-sm text-muted-foreground">
                 Download libraries
@@ -106,6 +98,7 @@ export default function Settings() {
                   disabled={isLibLoading}
                 />
                 <Button
+                  title="Download library"
                   variant="secondary"
                   type="submit"
                   disabled={isLibLoading}
@@ -121,20 +114,32 @@ export default function Settings() {
             <div>
               <p className="mb-1 text-sm text-foreground">Share your code</p>
               <div className="flex flex-col gap-1">
-                <Button variant="secondary" onClick={handleDownloadCode}>
-                  <DownloadIcon className="h-5 w-5" />
-                  <span className="ml-2">Download Code</span>
+                <Button
+                  title="Download the code"
+                  variant="secondary"
+                  onClick={handleDownloadCode}
+                  className="flex items-center justify-center"
+                >
+                  <DownloadIcon className="mr-2 h-5 w-5" />
+                  <span>Download Code</span>
                 </Button>
-                <Button variant="secondary" onClick={handleShareCode}>
-                  <UploadIcon className="h-5 w-5" />
-                  <span className="ml-2">Share Code</span>
+                <Button
+                  title="Share the code"
+                  variant="secondary"
+                  onClick={handleShareCode}
+                  className="flex items-center justify-center"
+                >
+                  <UploadIcon className="mr-2 h-5 w-5" />
+                  <span>Share Code</span>
                 </Button>
               </div>
             </div>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="secondary">Close</Button>
+              <Button title="Close the drawer" variant="secondary">
+                Close
+              </Button>
             </DrawerClose>
           </DrawerFooter>
         </div>
