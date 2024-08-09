@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore } from "@/store";
+import { useStore } from "@/store/useStore";
 
 import {
   Drawer,
@@ -37,9 +37,8 @@ export default function Settings() {
 
   const handlePipInstall = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const packageName = (form.elements.namedItem("lib") as HTMLInputElement)
-      .value;
+    const formData = new FormData(e.currentTarget);
+    const packageName = formData.get("lib") as string;
     const lib = packageName.replace("pip install ", "").trim();
 
     if (!window.micropip || !lib) return;
@@ -85,10 +84,7 @@ export default function Settings() {
             </DrawerDescription>
           </DrawerHeader>
           <div className="flex flex-col gap-4 px-4 py-2 pb-0">
-            <div>
-              <p className="mb-1 text-sm text-muted-foreground">
-                Download libraries
-              </p>
+            <SettingsSection title="Download libraries">
               <form className="flex gap-1" onSubmit={handlePipInstall}>
                 <Input
                   type="text"
@@ -110,30 +106,27 @@ export default function Settings() {
                   )}
                 </Button>
               </form>
-            </div>
-            <div>
-              <p className="mb-1 text-sm text-foreground">Share your code</p>
-              <div className="flex flex-col gap-1">
-                <Button
-                  title="Download the code"
-                  variant="secondary"
-                  onClick={handleDownloadCode}
-                  className="flex items-center justify-center"
-                >
-                  <DownloadIcon className="mr-2 h-5 w-5" />
-                  <span>Download Code</span>
-                </Button>
-                <Button
-                  title="Share the code"
-                  variant="secondary"
-                  onClick={handleShareCode}
-                  className="flex items-center justify-center"
-                >
-                  <UploadIcon className="mr-2 h-5 w-5" />
-                  <span>Share Code</span>
-                </Button>
-              </div>
-            </div>
+            </SettingsSection>
+            <SettingsSection title="Share your code">
+              <Button
+                title="Download the code"
+                variant="secondary"
+                onClick={handleDownloadCode}
+                className="flex items-center justify-center"
+              >
+                <DownloadIcon className="mr-2 h-5 w-5" />
+                <span>Download Code</span>
+              </Button>
+              <Button
+                title="Share the code"
+                variant="secondary"
+                onClick={handleShareCode}
+                className="flex items-center justify-center"
+              >
+                <UploadIcon className="mr-2 h-5 w-5" />
+                <span>Share Code</span>
+              </Button>
+            </SettingsSection>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
@@ -145,5 +138,19 @@ export default function Settings() {
         </div>
       </DrawerContent>
     </Drawer>
+  );
+}
+
+interface SettingsSectionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+function SettingsSection({ title, children }: SettingsSectionProps) {
+  return (
+    <div>
+      <p className="mb-1 text-sm text-muted-foreground">{title}</p>
+      <div className="flex flex-col gap-1">{children}</div>
+    </div>
   );
 }

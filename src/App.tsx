@@ -1,21 +1,22 @@
 import { useEffect } from "react";
-import { useStore } from "./store";
+import { useStore } from "./store/useStore";
 
 import { getDecodedParam } from "./lib/url";
-import Editor from "./components/editor";
+
+import Editor from "./components/editor/editor";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup
 } from "./components/ui/resizable";
 import ButtonsNav from "./components/nav-buttons";
-import Stats from "./components/stats";
-import Terminal from "./components/terminal";
+import Stats from "./components/editor/stats";
+import Terminal from "./components/editor/terminal";
 
 import { LoaderCircleIcon } from "lucide-react";
 
 function App() {
-  const { direction, setCode, runCode, initializePyodide, loading } =
+  const { direction, setCode, initializePyodide, isPyodideLoading } =
     useStore();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function App() {
   return (
     <>
       <section
-        className={`absolute z-[999] flex h-screen w-full flex-col items-center justify-center gap-3 bg-background text-foreground ${loading ? "" : "hidden"}`}
+        className={`absolute z-[999] flex h-screen w-full flex-col items-center justify-center gap-3 bg-background text-foreground ${isPyodideLoading ? "" : "hidden"}`}
       >
         <LoaderCircleIcon className="h-32 w-32 animate-spin" />
         <h1 className="font-bold">Loading Python Playground</h1>
@@ -49,10 +50,10 @@ function App() {
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={35}>
-            <Terminal handleRunCode={runCode} loading={loading} />
+            <Terminal />
           </ResizablePanel>
         </ResizablePanelGroup>
-        {!loading && <Stats />}
+        {!isPyodideLoading && <Stats />}
       </main>
     </>
   );

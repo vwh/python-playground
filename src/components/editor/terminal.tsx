@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { useStore } from "@/store";
-import Loader from "./loader";
+import { useStore } from "@/store/useStore";
 
-interface TerminalProps {
-  handleRunCode: (code: string) => Promise<void>;
-  loading: boolean;
-}
+import Loader from "@/components/loader";
 
-export default function Terminal({ handleRunCode, loading }: TerminalProps) {
-  const { output, error, setOutput } = useStore();
+export default function Terminal() {
+  const { output, error, setOutput, isPyodideLoading, runCode } = useStore();
   const [terminalCode, setTerminalCode] = useState("");
   const outputRef = useRef<HTMLPreElement>(null);
 
@@ -22,31 +18,22 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
     scrollToBottom();
   }, [output, scrollToBottom]);
 
-  const terminalCodeSubmit = useCallback(
+  const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const form = e.currentTarget;
-      const fromTerminalCode = (
-        form.elements.namedItem("terminalCode") as HTMLInputElement
-      ).value.trim();
+      const formData = new FormData(e.currentTarget);
+      const code = formData.get("terminalCode") as string;
 
-      if (fromTerminalCode) {
-        setOutput(fromTerminalCode);
-        await handleRunCode(fromTerminalCode);
+      if (code.trim()) {
+        setOutput(code);
+        await runCode(code);
         setTerminalCode("");
       }
     },
-    [handleRunCode, setOutput]
+    [runCode, setOutput]
   );
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTerminalCode(e.target.value);
-    },
-    []
-  );
-
-  if (loading) {
+  if (isPyodideLoading) {
     return (
       <div className="p-4">
         <Loader text="Downloading Python" />
@@ -60,18 +47,16 @@ export default function Terminal({ handleRunCode, loading }: TerminalProps) {
       className="h-full w-full overflow-x-auto bg-background p-4"
     >
       <code
-        className={`w-full font-mono text-sm ${
-          error ? "text-red-500" : "text-foreground"
-        }`}
+        className={`w-full font-mono text-sm ${error ? "text-red-500" : "text-foreground"}`}
       >
         {error || output}
         <br />
-        <form className="flex items-center gap-1" onSubmit={terminalCodeSubmit}>
+        <form className="flex items-center gap-1" onSubmit={handleSubmit}>
           <p>&gt;&gt;</p>
           <input
             value={terminalCode}
             name="terminalCode"
-            onChange={handleInputChange}
+            onChange={(e) => setTerminalCode(e.target.value)}
             className="w-full border-none bg-transparent text-foreground outline-none"
             autoComplete="off"
             placeholder="..."

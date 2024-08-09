@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useStore } from "@/store";
+import { useStore } from "@/store/useStore";
 
 interface CodeStats {
   lines: number;
