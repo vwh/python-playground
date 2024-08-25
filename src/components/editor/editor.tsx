@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 import { useStore } from "@/store/useStore";
 import MonacoEditor, { OnMount } from "@monaco-editor/react";

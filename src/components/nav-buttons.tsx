@@ -7,7 +7,7 @@ import Settings from "./settings";
 import {
   ReplaceIcon,
   PlayIcon,
-  TrashIcon,
+  Trash2Icon,
   LoaderCircleIcon
 } from "lucide-react";
 
@@ -44,23 +44,28 @@ const ButtonsNav = () => {
             disabled={isCodeExecuting}
             icon={
               isCodeExecuting ? (
-                <LoaderCircleIcon className="animate-spin" />
+                <LoaderCircleIcon className="h-5 w-5 animate-spin" />
               ) : (
-                <PlayIcon />
+                <PlayIcon className="h-5 w-5" />
               )
             }
             label="Run"
+            title="Execute Python Code"
           />
           <NavButton
             onClick={handleTerminalClear}
             disabled={isCodeExecuting}
-            icon={<TrashIcon />}
+            icon={<Trash2Icon className="h-5 w-5" />}
             label="Clear Terminal"
+            title="Clear Terminal"
           />
           <NavButton
             onClick={handleDirectionChange}
-            icon={<ReplaceIcon />}
-            label="Toggle Direction"
+            icon={<ReplaceIcon className="h-5 w-5" />}
+            label={
+              direction.substring(0, 1).toUpperCase() + direction.substring(1)
+            }
+            title="Change direction"
           />
         </div>
         <div className="flex items-center">
@@ -76,18 +81,21 @@ const NavButton = memo(
     onClick,
     disabled,
     icon,
-    label
+    label,
+    title
   }: {
     onClick: () => void;
     disabled?: boolean;
     icon: React.ReactNode;
     label: string;
+    title: string;
   }) => (
     <Button
       onClick={onClick}
       disabled={disabled}
       variant="secondary"
       className="text-foreground"
+      title={title}
     >
       {icon}
       <span className="ml-2 hidden sm:inline">{label}</span>

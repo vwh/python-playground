@@ -65,7 +65,7 @@ export default function Settings() {
     <Drawer>
       <DrawerTrigger asChild>
         <Button
-          title="Toggle settings drawer"
+          title="Open Settings"
           variant="secondary"
           className="flex items-center space-x-2"
         >
