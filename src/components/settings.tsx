@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useStore } from "@/store/useStore";
 
 import {
@@ -22,8 +22,7 @@ import {
 } from "lucide-react";
 
 export default function Settings() {
-  const { code, setOutput, setError } = useStore();
-  const [isLibLoading, setIsLibLoading] = useState(false);
+  const { code, pipInstall, isLibLoading } = useStore();
 
   const handleDownloadCode = () => {
     const blob = new Blob([code], { type: "text/plain" });
@@ -35,24 +34,11 @@ export default function Settings() {
     URL.revokeObjectURL(url);
   };
 
-  const handlePipInstall = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const packageName = formData.get("lib") as string;
-    const lib = packageName.replace("pip install ", "").trim();
-
-    if (!window.micropip || !lib) return;
-
-    setIsLibLoading(true);
-    try {
-      await window.micropip.install(lib, true);
-      setOutput(`pip install ${lib} successfully installed`);
-      setError(null);
-    } catch (e) {
-      setError(`Failed to install ${lib}: ${(e as Error).message}`);
-    } finally {
-      setIsLibLoading(false);
-    }
+    await pipInstall(packageName);
   };
 
   const handleShareCode = () => {
@@ -85,7 +71,7 @@ export default function Settings() {
           </DrawerHeader>
           <div className="flex flex-col gap-4 px-4 py-2 pb-0">
             <SettingsSection title="Download libraries">
-              <form className="flex gap-1" onSubmit={handlePipInstall}>
+              <form className="flex gap-1" onSubmit={handleSubmit}>
                 <Input
                   type="text"
                   name="lib"

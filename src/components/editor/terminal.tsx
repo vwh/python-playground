@@ -4,7 +4,8 @@ import { useStore } from "@/store/useStore";
 import Loader from "@/components/loader";
 
 export default function Terminal() {
-  const { output, error, setOutput, isPyodideLoading, runCode } = useStore();
+  const { output, error, setOutput, isPyodideLoading, runCode, pipInstall } =
+    useStore();
   const [terminalCode, setTerminalCode] = useState("");
   const outputRef = useRef<HTMLPreElement>(null);
 
@@ -25,9 +26,14 @@ export default function Terminal() {
       const code = formData.get("terminalCode") as string;
 
       if (code.trim()) {
-        setOutput(code);
-        await runCode(code);
-        setTerminalCode("");
+        if (code.includes("pip install")) {
+          pipInstall(code);
+          setTerminalCode("");
+        } else {
+          setOutput(code);
+          await runCode(code);
+          setTerminalCode("");
+        }
       }
     },
     [runCode, setOutput]

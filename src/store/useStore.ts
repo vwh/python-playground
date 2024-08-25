@@ -11,6 +11,7 @@ interface State {
   pyodide: PyodideInterface | null;
   isPyodideLoading: boolean;
   isCodeExecuting: boolean;
+  isLibLoading: boolean;
 }
 
 interface Actions {
@@ -20,6 +21,7 @@ interface Actions {
   setError: (error: string | null) => void;
   setDirection: (direction: Direction) => void;
   initializePyodide: () => Promise<void>;
+  pipInstall: (packageName: string) => Promise<void>;
   runCode: (code: string) => Promise<void>;
 }
 
@@ -30,7 +32,8 @@ const initialState: State = {
   direction: "vertical",
   pyodide: null,
   isPyodideLoading: true,
-  isCodeExecuting: false
+  isCodeExecuting: false,
+  isLibLoading: false
 };
 
 export const useStore = create<State & Actions>((set, get) => ({
@@ -54,7 +57,6 @@ export const useStore = create<State & Actions>((set, get) => ({
       await pyodideInstance.loadPackage("micropip");
       const micropip = await pyodideInstance.pyimport("micropip");
       window.micropip = micropip;
-
       set({ pyodide: pyodideInstance, isPyodideLoading: false });
     } catch (error) {
       console.error("Failed to load Pyodide:", error);
@@ -62,6 +64,24 @@ export const useStore = create<State & Actions>((set, get) => ({
         error: "Failed to load Pyodide. Please refresh the page and try again.",
         isPyodideLoading: false
       });
+    }
+  },
+
+  pipInstall: async (packageName: string) => {
+    const { setOutput, setError } = get();
+    const lib = packageName.replace("pip install ", "").trim();
+
+    if (!window.micropip || !lib) return;
+    set({ isLibLoading: true });
+
+    try {
+      await window.micropip.install(lib, true);
+      setOutput(`pip install ${lib} successfully installed`);
+      setError(null);
+    } catch (e) {
+      setError(`Failed to install ${lib}: ${(e as Error).message}`);
+    } finally {
+      set({ isLibLoading: false });
     }
   },
 
