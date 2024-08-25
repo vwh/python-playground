@@ -1,7 +1,7 @@
-import { useCallback } from "react";
-import { useStore } from "@/store/useStore";
+import React, { useCallback, useMemo } from "react";
 
-import MonacoEditor from "@monaco-editor/react";
+import { useStore } from "@/store/useStore";
+import MonacoEditor, { OnMount } from "@monaco-editor/react";
 import Loader from "@/components/loader";
 
 export default function Editor() {
@@ -16,19 +16,42 @@ export default function Editor() {
     [setCode]
   );
 
+  const editorOptions = useMemo(
+    () => ({
+      minimap: { enabled: false },
+      scrollBeyondLastLine: false,
+      fontSize: 14,
+      fontFamily: "'Fira Code', monospace",
+      fontLigatures: true,
+      cursorSmoothCaretAnimation: "on",
+      smoothScrolling: true,
+      padding: { top: 16, bottom: 16 },
+      renderLineHighlight: "all",
+      matchBrackets: "always",
+      autoClosingBrackets: "always",
+      autoClosingQuotes: "always",
+      formatOnPaste: true,
+      formatOnType: true
+    }),
+    []
+  );
+
+  const handleEditorDidMount: OnMount = useCallback((editor) => {
+    editor.focus();
+  }, []);
+
   return (
-    <div className="flex h-full flex-col items-center justify-center bg-background pt-4 text-foreground">
+    <div className="h-full w-full overflow-hidden rounded-lg shadow-lg">
       <MonacoEditor
         defaultLanguage="python"
-        theme={"vs-dark"}
+        theme="vs-dark"
         value={code}
         onChange={handleCodeOnChange}
-        loading={<Loader text="Loading Editor" />}
-        options={{
-          minimap: { enabled: false },
-          scrollBeyondLastLine: false,
-          fontSize: 14
-        }}
+        loading={<Loader text="Initializing Editor" />}
+        // @ts-expect-error ts(2322)
+        options={editorOptions}
+        onMount={handleEditorDidMount}
+        className="h-full w-full"
       />
     </div>
   );
