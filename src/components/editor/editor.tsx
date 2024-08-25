@@ -1,13 +1,11 @@
 import { useCallback } from "react";
 import { useStore } from "@/store/useStore";
-import { useTheme } from "@/hooks/useTheme";
 
 import MonacoEditor from "@monaco-editor/react";
 import Loader from "@/components/loader";
 
 export default function Editor() {
   const { code, setCode } = useStore();
-  const { theme } = useTheme();
 
   const handleCodeOnChange = useCallback(
     (value: string | undefined) => {
@@ -22,7 +20,7 @@ export default function Editor() {
     <div className="flex h-full flex-col items-center justify-center bg-background pt-4 text-foreground">
       <MonacoEditor
         defaultLanguage="python"
-        theme={theme === "dark" ? "vs-dark" : "light"}
+        theme={"vs-dark"}
         value={code}
         onChange={handleCodeOnChange}
         loading={<Loader text="Loading Editor" />}

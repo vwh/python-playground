@@ -3,7 +3,6 @@ import { useStore } from "@/store/useStore";
 
 import { Button } from "./ui/button";
 import Settings from "./settings";
-import ModeToggle from "./theme/mode-toggle";
 
 import {
   ReplaceIcon,
@@ -64,9 +63,8 @@ const ButtonsNav = () => {
             label="Toggle Direction"
           />
         </div>
-        <div className="flex items-center gap-1 md:gap-2">
+        <div className="flex items-center">
           <Settings />
-          <ModeToggle />
         </div>
       </div>
     </nav>
