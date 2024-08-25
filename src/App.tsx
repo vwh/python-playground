@@ -55,7 +55,7 @@ function App() {
         <ResizablePanel defaultSize={65}>
           <Editor />
         </ResizablePanel>
-        <ResizableHandle withHandle />
+        <ResizableHandle className="border-[1px]" withHandle />
         <ResizablePanel defaultSize={35}>
           <Terminal />
         </ResizablePanel>

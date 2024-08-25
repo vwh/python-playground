@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, memo } from "react";
 import { useStore } from "@/store/useStore";
 
 import { Button } from "./ui/button";
@@ -12,7 +12,7 @@ import {
   LoaderCircleIcon
 } from "lucide-react";
 
-export default function ButtonsNav() {
+const ButtonsNav = () => {
   const {
     setDirection,
     direction,
@@ -32,48 +32,71 @@ export default function ButtonsNav() {
     setError(null);
   }, [clearOutput, setError]);
 
-  const handleRunCode = useCallback(async () => {
-    await runCode(code);
+  const handleRunCode = useCallback(() => {
+    runCode(code);
   }, [runCode, code]);
 
   return (
-    <section className="flex justify-between gap-2 bg-background p-2">
-      <div className="flex grow items-center justify-center gap-1">
-        <Button
-          disabled={isCodeExecuting}
-          title="Execute the code"
-          onClick={handleRunCode}
-          variant="secondary"
-        >
-          {isCodeExecuting ? (
-            <LoaderCircleIcon className="h-5 w-5 animate-spin" />
-          ) : (
-            <PlayIcon className="h-5 w-5" />
-          )}
-          <span className={`ml-2 ${isCodeExecuting ? "opacity-80" : ""}`}>
-            Run
-          </span>
-        </Button>
-        <Button
-          disabled={isCodeExecuting}
-          title="Clear the terminal"
-          onClick={handleTerminalClear}
-          variant="secondary"
-        >
-          <TrashIcon className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Clear Terminal</span>
-        </Button>
-        <Button
-          title="Change direction"
-          variant="secondary"
-          onClick={handleDirectionChange}
-        >
-          <ReplaceIcon className="h-5 w-5" />
-          <span className="ml-2 hidden md:inline">Direction</span>
-        </Button>
-        <Settings />
-        <ModeToggle />
+    <nav className="mb-2 w-full rounded-b-lg bg-gray-900 px-4 py-2">
+      <div className="flex flex-wrap items-center justify-center gap-1 sm:justify-between md:gap-2">
+        <div className="flex flex-wrap items-center gap-1 md:gap-2">
+          <NavButton
+            onClick={handleRunCode}
+            disabled={isCodeExecuting}
+            icon={
+              isCodeExecuting ? (
+                <LoaderCircleIcon className="animate-spin" />
+              ) : (
+                <PlayIcon />
+              )
+            }
+            label="Run"
+          />
+          <NavButton
+            onClick={handleTerminalClear}
+            disabled={isCodeExecuting}
+            icon={<TrashIcon />}
+            label="Clear Terminal"
+          />
+          <NavButton
+            onClick={handleDirectionChange}
+            icon={<ReplaceIcon />}
+            label="Toggle Direction"
+          />
+        </div>
+        <div className="flex items-center gap-1 md:gap-2">
+          <Settings />
+          <ModeToggle />
+        </div>
       </div>
-    </section>
+    </nav>
   );
-}
+};
+
+const NavButton = memo(
+  ({
+    onClick,
+    disabled,
+    icon,
+    label
+  }: {
+    onClick: () => void;
+    disabled?: boolean;
+    icon: React.ReactNode;
+    label: string;
+  }) => (
+    <Button
+      onClick={onClick}
+      disabled={disabled}
+      variant="secondary"
+      className="text-foreground"
+    >
+      {icon}
+      <span className="ml-2 hidden sm:inline">{label}</span>
+    </Button>
+  )
+);
+
+NavButton.displayName = "NavButton";
+
+export default memo(ButtonsNav);

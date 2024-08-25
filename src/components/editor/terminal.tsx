@@ -7,7 +7,7 @@ export default function Terminal() {
   const { output, error, setOutput, isPyodideLoading, runCode, pipInstall } =
     useStore();
   const [terminalCode, setTerminalCode] = useState<string>("");
-  const outputRef = useRef<HTMLPreElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = useCallback(() => {
     if (outputRef.current) {
@@ -26,7 +26,7 @@ export default function Terminal() {
       const code = formData.get("terminalCode") as string;
       if (code.trim()) {
         if (code.includes("pip install")) {
-          pipInstall(code);
+          await pipInstall(code);
         } else {
           setOutput(code);
           await runCode(code);
@@ -39,36 +39,37 @@ export default function Terminal() {
 
   if (isPyodideLoading) {
     return (
-      <div className="p-4">
-        <Loader text="Downloading Python" />
+      <div className="flex h-full items-center justify-center bg-gray-900">
+        <Loader text="Initializing Python Environment" />
       </div>
     );
   }
 
   return (
-    <pre
+    <div
       ref={outputRef}
-      className="h-full w-full overflow-x-auto bg-background px-4 py-1"
+      className="h-full w-full overflow-y-auto bg-gray-900 px-4 py-3 font-mono text-sm text-gray-300"
     >
-      <code
-        className={`w-full font-mono text-sm ${error ? "text-red-500" : "text-foreground"}`}
-      >
-        {error || output}
-        <br />
-        <form className="flex items-center gap-1" onSubmit={handleSubmit}>
-          <p>&gt;&gt;</p>
-          <input
-            value={terminalCode}
-            name="terminalCode"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTerminalCode(e.target.value)
-            }
-            className="w-full border-none bg-transparent text-foreground outline-none"
-            autoComplete="off"
-            placeholder="..."
-          />
-        </form>
-      </code>
-    </pre>
+      {(error || output) && (
+        <div
+          className={`whitespace-pre-wrap ${error ? "text-red-400" : "text-gray-300"}`}
+        >
+          {error || output}
+        </div>
+      )}
+      <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+        <span className="text-green-400">&gt;&gt;&gt;</span>
+        <input
+          value={terminalCode}
+          name="terminalCode"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTerminalCode(e.target.value)
+          }
+          className="w-full bg-transparent text-gray-300 outline-none"
+          autoComplete="off"
+          placeholder="..."
+        />
+      </form>
+    </div>
   );
 }
