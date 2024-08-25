@@ -21,26 +21,13 @@
 <br>
 
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/a9424902-46ea-4d39-8553-10d779b43e98" alt="Preview">
+    <img src="https://github.com/user-attachments/assets/1a5247a6-9e0d-4d5e-8ee5-51b3aa41e70b" alt="Preview">
 </div>
 
-## Getting Started
+## 🤝 Contributing
 
-### Clone the Repository
+Contributions are welcome! Feel free to open a pull request with your improvements or fixes.
 
-```sh
-git clone https://github.com/vwh/python-playground
-cd python-playground
-```
+## 📄 License
 
-### Install Dependencies
-
-```sh
-npm install
-```
-
-### Start the Development Server
-
-```sh
-npm run dev
-```
+Under the MIT License. See [License](https://github.com/vwh/python-playground/blob/main/LICENSE) for more information.
