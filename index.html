@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Python Playground</title>
-  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileColor" content="#1e1e1e">
   <meta name="theme-color" content="#1e1e1e">
   <link rel="manifest" href="site.webmanifest">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vwh.github.io/python-playground/">
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <!-- Favicon and icons -->
+  <link rel="icon" href="./icons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="./icons/android-chrome-512x512.png" />
   <!-- Meta Tags -->
   <meta name="description" content="Explore and experiment with Python code in your browser">
   <meta name="keywords"
@@ -26,10 +26,8 @@
   <meta property="og:image" content="https://vwh.github.io/python-playground/preview.png">
   <meta property="og:url" content="https://vwh.github.io/python-playground/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Python Playground">
   <meta name="twitter:description" content="Explore and experiment with Python code in your browser">
-  <meta name="twitter:image" content="https://vwh.github.io/python-playground/preview.png">
   <meta name="author" content="vwh">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,12 +40,12 @@
       font-family: "Fira Mono", monospace;
     }
 
-    .no-js-message {
+    .no-js {
       text-align: center;
       margin-top: 20%;
     }
 
-    .no-js-h1 {
+    .no-js h1 {
       font-size: 2rem;
     }
   </style>
@@ -59,8 +57,8 @@
   <div id="root" class="bg-background"></div>
   <script type="module" src="/src/main.tsx"></script>
   <noscript>
-    <div class="no-js-message">
-      <h1 class="no-js-h1">JavaScript Required</h1>
+    <div class="no-js">
+      <h1>JavaScript Required</h1>
       <p>
         We're sorry, but this application requires JavaScript to function
         correctly. Please enable JavaScript in your browser and reload the
