@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Python Playground</title>
-  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileColor" content="#1e1e1e">
   <meta name="theme-color" content="#1e1e1e">
   <link rel="manifest" href="site.webmanifest">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vwh.github.io/python-playground/">
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <!-- Favicon and icons -->
+  <link rel="icon" href="./icons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="./icons/android-chrome-512x512.png" />
   <!-- Meta Tags -->
   <meta name="description" content="Explore and experiment with Python code in your browser">
   <meta name="keywords"
@@ -26,10 +26,8 @@
   <meta property="og:image" content="https://vwh.github.io/python-playground/preview.png">
   <meta property="og:url" content="https://vwh.github.io/python-playground/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Python Playground">
   <meta name="twitter:description" content="Explore and experiment with Python code in your browser">
-  <meta name="twitter:image" content="https://vwh.github.io/python-playground/preview.png">
   <meta name="author" content="vwh">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,22 +36,22 @@
     href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <!-- Critical CSS -->
   <style>
-    body {
+    * {
       font-family: "Fira Mono", monospace;
     }
 
-    .no-js-message {
+    .no-js {
       text-align: center;
       margin-top: 20%;
     }
 
-    .no-js-h1 {
+    .no-js h1 {
       font-size: 2rem;
     }
   </style>
   <!-- Pyodide -->
   <script defer src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
-  <script type="module" crossorigin src="/python-playground/assets/index-DYCXEuPc.js"></script>
+  <script type="module" crossorigin src="/python-playground/assets/index-BMCSKrMt.js"></script>
   <link rel="modulepreload" crossorigin href="/python-playground/assets/react-BMrMXMSG.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/scheduler-CzFDRTuY.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/react-dom-XhyPzpGK.js">
@@ -61,6 +59,7 @@
   <link rel="modulepreload" crossorigin href="/python-playground/assets/zustand-3uy3gfa1.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/state-local-BBNhjlcY.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/@monaco-editor-BrJCHBAK.js">
+  <link rel="modulepreload" crossorigin href="/python-playground/assets/lucide-react-DFK0IKzL.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/tslib-CDuPK5Eb.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/get-nonce-C-Z93AgS.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/react-style-singleton-Cmt3ZKmQ.js">
@@ -69,21 +68,20 @@
   <link rel="modulepreload" crossorigin href="/python-playground/assets/use-callback-ref-Dc1rmTkS.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/react-remove-scroll-Df20_Mxm.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/aria-hidden-DQ5UC2Eg.js">
-  <link rel="modulepreload" crossorigin href="/python-playground/assets/@radix-ui-8SGmtYo-.js">
+  <link rel="modulepreload" crossorigin href="/python-playground/assets/@radix-ui-C1GVTVHq.js">
+  <link rel="modulepreload" crossorigin href="/python-playground/assets/class-variance-authority-Bb4qSo10.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/clsx-B-dksMZM.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/tailwind-merge-BkWO730n.js">
-  <link rel="modulepreload" crossorigin href="/python-playground/assets/lucide-react-DFK0IKzL.js">
+  <link rel="modulepreload" crossorigin href="/python-playground/assets/vaul-OreU8RvA.js">
   <link rel="modulepreload" crossorigin href="/python-playground/assets/react-resizable-panels-CUcdorkG.js">
-  <link rel="modulepreload" crossorigin href="/python-playground/assets/class-variance-authority-Bb4qSo10.js">
-  <link rel="modulepreload" crossorigin href="/python-playground/assets/vaul-BusDX9t-.js">
-  <link rel="stylesheet" crossorigin href="/python-playground/assets/index-CmbZfmwz.css">
+  <link rel="stylesheet" crossorigin href="/python-playground/assets/index-DBuQQ3r5.css">
 <link rel="manifest" href="/python-playground/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/python-playground/registerSW.js"></script></head>
 
 <body>
-  <div id="root"></div>
+  <div id="root" class="bg-background"></div>
   <noscript>
-    <div class="no-js-message">
-      <h1 class="no-js-h1">JavaScript Required</h1>
+    <div class="no-js">
+      <h1>JavaScript Required</h1>
       <p>
         We're sorry, but this application requires JavaScript to function
         correctly. Please enable JavaScript in your browser and reload the
