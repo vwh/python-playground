@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useStore } from "@/store/useStore";
 
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -11,8 +13,6 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from "./ui/drawer";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 
 import {
   DownloadIcon,
@@ -21,10 +21,20 @@ import {
   LoaderIcon
 } from "lucide-react";
 
+const SettingsSection: React.FC<{
+  title: string;
+  children: React.ReactNode;
+}> = ({ title, children }) => (
+  <div>
+    <p className="mb-1 text-sm text-muted-foreground">{title}</p>
+    <div className="flex flex-col gap-1">{children}</div>
+  </div>
+);
+
 export default function Settings() {
   const { code, pipInstall, isLibLoading } = useStore();
 
-  const handleDownloadCode = () => {
+  const handleDownloadCode = useCallback(() => {
     const blob = new Blob([code], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -32,22 +42,24 @@ export default function Settings() {
     link.href = url;
     link.click();
     URL.revokeObjectURL(url);
-  };
+  }, [code]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const packageName = formData.get("lib") as string;
-    await pipInstall(packageName);
-  };
+  const handlePipInstall = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const packageName = new FormData(e.currentTarget).get("lib") as string;
+      await pipInstall(packageName);
+    },
+    [pipInstall]
+  );
 
-  const handleShareCode = () => {
+  const handleCodeShare = useCallback(() => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("v", btoa(code));
     const newUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}${window.location.hash}`;
     window.history.replaceState({}, document.title, newUrl);
     navigator.clipboard.writeText(newUrl);
-  };
+  }, [code]);
 
   return (
     <Drawer>
@@ -71,7 +83,7 @@ export default function Settings() {
           </DrawerHeader>
           <div className="flex flex-col gap-4 px-4 py-2 pb-0">
             <SettingsSection title="Download libraries">
-              <form className="flex gap-1" onSubmit={handleSubmit}>
+              <form className="flex gap-1" onSubmit={handlePipInstall}>
                 <Input
                   type="text"
                   name="lib"
@@ -106,7 +118,7 @@ export default function Settings() {
               <Button
                 title="Share the code"
                 variant="secondary"
-                onClick={handleShareCode}
+                onClick={handleCodeShare}
                 className="flex items-center justify-center"
               >
                 <UploadIcon className="mr-2 h-5 w-5" />
@@ -124,19 +136,5 @@ export default function Settings() {
         </div>
       </DrawerContent>
     </Drawer>
-  );
-}
-
-interface SettingsSectionProps {
-  title: string;
-  children: React.ReactNode;
-}
-
-function SettingsSection({ title, children }: SettingsSectionProps) {
-  return (
-    <div>
-      <p className="mb-1 text-sm text-muted-foreground">{title}</p>
-      <div className="flex flex-col gap-1">{children}</div>
-    </div>
   );
 }

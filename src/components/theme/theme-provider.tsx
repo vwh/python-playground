@@ -31,6 +31,7 @@ export default function ThemeProvider({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   );
 
+  // set the theme
   useEffect(() => {
     const root = window.document.documentElement;
 

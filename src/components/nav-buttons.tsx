@@ -24,11 +24,11 @@ export default function ButtonsNav() {
     isCodeExecuting
   } = useStore();
 
-  const handleChangeDirection = useCallback(() => {
+  const handleDirectionChange = useCallback(() => {
     setDirection(direction === "vertical" ? "horizontal" : "vertical");
   }, [direction, setDirection]);
 
-  const handleCodeDelete = useCallback(() => {
+  const handleTerminalClear = useCallback(() => {
     clearOutput("Running Python 3.12.1");
     setError(null);
   }, [clearOutput, setError]);
@@ -59,7 +59,7 @@ export default function ButtonsNav() {
           <Button
             disabled={isCodeExecuting}
             title="Clear the terminal"
-            onClick={handleCodeDelete}
+            onClick={handleTerminalClear}
             variant="secondary"
           >
             <TrashIcon className="h-5 w-5" />
@@ -68,7 +68,7 @@ export default function ButtonsNav() {
           <Button
             title="Change direction"
             variant="secondary"
-            onClick={handleChangeDirection}
+            onClick={handleDirectionChange}
           >
             <ReplaceIcon className="h-5 w-5" />
             <span className="ml-2 hidden md:inline">Direction</span>

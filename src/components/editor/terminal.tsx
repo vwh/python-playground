@@ -6,7 +6,7 @@ import Loader from "@/components/loader";
 export default function Terminal() {
   const { output, error, setOutput, isPyodideLoading, runCode, pipInstall } =
     useStore();
-  const [terminalCode, setTerminalCode] = useState("");
+  const [terminalCode, setTerminalCode] = useState<string>("");
   const outputRef = useRef<HTMLPreElement>(null);
 
   const scrollToBottom = useCallback(() => {
@@ -24,19 +24,17 @@ export default function Terminal() {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
       const code = formData.get("terminalCode") as string;
-
       if (code.trim()) {
         if (code.includes("pip install")) {
           pipInstall(code);
-          setTerminalCode("");
         } else {
           setOutput(code);
           await runCode(code);
-          setTerminalCode("");
         }
+        setTerminalCode("");
       }
     },
-    [runCode, setOutput]
+    [runCode, setOutput, pipInstall]
   );
 
   if (isPyodideLoading) {
@@ -62,7 +60,9 @@ export default function Terminal() {
           <input
             value={terminalCode}
             name="terminalCode"
-            onChange={(e) => setTerminalCode(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTerminalCode(e.target.value)
+            }
             className="w-full border-none bg-transparent text-foreground outline-none"
             autoComplete="off"
             placeholder="..."
