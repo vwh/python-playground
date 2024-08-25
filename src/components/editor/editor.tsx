@@ -3,7 +3,6 @@ import { useStore } from "@/store/useStore";
 import { useTheme } from "@/hooks/useTheme";
 
 import MonacoEditor from "@monaco-editor/react";
-import { Separator } from "@/components/ui/separator";
 import Loader from "@/components/loader";
 
 export default function Editor() {
@@ -33,7 +32,6 @@ export default function Editor() {
           fontSize: 14
         }}
       />
-      <Separator />
     </div>
   );
 }

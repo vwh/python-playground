@@ -48,7 +48,7 @@ export default function Terminal() {
   return (
     <pre
       ref={outputRef}
-      className="h-full w-full overflow-x-auto bg-background p-4"
+      className="h-full w-full overflow-x-auto bg-background px-4 py-1"
     >
       <code
         className={`w-full font-mono text-sm ${error ? "text-red-500" : "text-foreground"}`}
