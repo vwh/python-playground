@@ -21,7 +21,9 @@
 <br>
 
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/1a5247a6-9e0d-4d5e-8ee5-51b3aa41e70b" alt="Preview">
+    <a href="https://vwh.github.io/python-playground" target="_blank">
+        <img src="https://github.com/user-attachments/assets/1a5247a6-9e0d-4d5e-8ee5-51b3aa41e70b" alt="Preview">
+    </a>
 </div>
 
 ## 🤝 Contributing
