@@ -3,6 +3,10 @@ import { useStore } from "@/store/useStore";
 
 import Loader from "@/components/loader";
 
+const COMMANDS = {
+  pwd: `import os; print(os.getcwd())`
+};
+
 export default function Terminal() {
   const { output, error, setOutput, isPyodideLoading, runCode, pipInstall } =
     useStore();
@@ -25,10 +29,12 @@ export default function Terminal() {
       const formData = new FormData(e.currentTarget);
       const code = formData.get("terminalCode") as string;
       if (code.trim()) {
+        setOutput(code);
         if (code.includes("pip install")) {
           await pipInstall(code);
+        } else if (code === "pwd") {
+          await runCode(COMMANDS.pwd);
         } else {
-          setOutput(code);
           await runCode(code);
         }
         setTerminalCode("");
