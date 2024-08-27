@@ -41,6 +41,8 @@ export default function Terminal() {
 
   const commandHandlers: CommandHandlers = {
     "pip install": async (input: string) => await pipInstall(input),
+    "echo ": async (input: string) =>
+      await setOutput(input.split(" ").slice(1).join(" ")),
     pwd: getCwd,
     cwd: getCwd,
     clear: clearTerminal,
