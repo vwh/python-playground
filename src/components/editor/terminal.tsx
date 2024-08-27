@@ -1,15 +1,22 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useStore } from "@/store/useStore";
-
 import Loader from "@/components/loader";
 
-const COMMANDS = {
-  pwd: `import os; print(os.getcwd())`
-};
+interface CommandHandlers {
+  [key: string]: (input: string) => Promise<void>;
+}
 
 export default function Terminal() {
-  const { output, error, setOutput, isPyodideLoading, runCode, pipInstall } =
-    useStore();
+  const {
+    output,
+    error,
+    setOutput,
+    isPyodideLoading,
+    runCode,
+    pipInstall,
+    setError,
+    clearOutput
+  } = useStore();
   const [terminalCode, setTerminalCode] = useState<string>("");
   const outputRef = useRef<HTMLDivElement>(null);
 
@@ -23,24 +30,46 @@ export default function Terminal() {
     scrollToBottom();
   }, [output, scrollToBottom]);
 
-  const handleSubmit = useCallback(
+  const getCwd = useCallback(async () => {
+    await runCode("import os; print(os.getcwd())");
+  }, [runCode]);
+
+  const clearTerminal = useCallback(async () => {
+    clearOutput("Running Python 3.12.1");
+    setError(null);
+  }, [clearOutput, setError]);
+
+  const commandHandlers: CommandHandlers = {
+    "pip install": async (input: string) => await pipInstall(input),
+    pwd: getCwd,
+    cwd: getCwd,
+    clear: clearTerminal,
+    cls: clearTerminal
+  };
+
+  const handleReplSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
-      const code = formData.get("terminalCode") as string;
-      if (code.trim()) {
-        setOutput(code);
-        if (code.includes("pip install")) {
-          await pipInstall(code);
-        } else if (code === "pwd") {
-          await runCode(COMMANDS.pwd);
-        } else {
-          await runCode(code);
-        }
-        setTerminalCode("");
+      const replInput = formData.get("terminalCode") as string;
+
+      if (!replInput.trim()) return;
+
+      setOutput(replInput);
+
+      const handler = Object.entries(commandHandlers).find(([key]) =>
+        replInput.startsWith(key)
+      );
+
+      if (handler) {
+        await handler[1](replInput);
+      } else {
+        await runCode(replInput);
       }
+
+      setTerminalCode("");
     },
-    [runCode, setOutput, pipInstall]
+    [runCode, setOutput, commandHandlers]
   );
 
   if (isPyodideLoading) {
@@ -63,7 +92,7 @@ export default function Terminal() {
           {error || output}
         </div>
       )}
-      <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+      <form className="flex items-center gap-2" onSubmit={handleReplSubmit}>
         <span className="text-green-400">&gt;&gt;&gt;</span>
         <input
           value={terminalCode}
