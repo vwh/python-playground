@@ -26,6 +26,55 @@
     </a>
 </div>
 
+## 🌟 Features
+
+<table>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/code.svg" width="40"><br><b>Python in Browser</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/cpu.svg" width="40"><br><b>WebAssembly Powered</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/package.svg" width="40"><br><b>Library Support</b></td>
+  </tr>
+  <tr>
+    <td>
+      • Run Python code instantly<br>
+      • No server-side processing<br>
+      • Immediate feedback and results
+    </td>
+    <td>
+      • Pyodide integration<br>
+      • Near-native performance<br>
+      • Seamless Python execution
+    </td>
+    <td>
+      • Install packages via micropip<br>
+      • Access to wide range of libraries<br>
+      • Expand functionality on-the-fly
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/terminal.svg" width="40"><br><b>Terminal Commands</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/palette.svg" width="40"><br><b>Intuitive Interface</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="40"><br><b>Fast and Responsive</b></td>
+  </tr>
+  <tr>
+    <td>
+      • Support for pwd, clear, etc.<br>
+      • Familiar command-line experience<br>
+      • Enhanced debugging capabilities
+    </td>
+    <td>
+      • Clean and modern UI design<br>
+      • User-friendly code editor<br>
+      • Intuitive layout and controls
+    </td>
+    <td>
+      • Quick code execution<br>
+      • Responsive editor interface<br>
+      • Smooth user experience
+    </td>
+  </tr>
+</table>
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open a pull request with your improvements or fixes.
