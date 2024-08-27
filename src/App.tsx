@@ -7,7 +7,7 @@ import Editor from "./components/editor/editor";
 import ButtonsNav from "./components/nav-buttons";
 import Stats from "./components/editor/stats";
 import Terminal from "./components/editor/terminal";
-import Ripple from "@/components/magicui/ripple";
+import Ripple from "@/components/ui/ripple";
 import {
   ResizableHandle,
   ResizablePanel,
