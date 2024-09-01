@@ -7,6 +7,9 @@
 </p>
 
 <div align="center">
+  <a href="https://github.com/vwh/python-playground/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/vwh/python-playground?label=License" alt="License"/>
+  </a>
   <a href="https://github.com/vwh/python-playground/actions/workflows/codeql.yml">
     <img src="https://github.com/vwh/python-playground/actions/workflows/codeql.yml/badge.svg" alt="Codeql Badge"/>
   </a>
