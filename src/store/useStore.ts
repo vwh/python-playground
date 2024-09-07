@@ -41,7 +41,7 @@ export const useStore = create<State & Actions>((set, get) => ({
 
   setCode: (code) => set({ code }),
   setOutput: (newOutput) =>
-    set((state) => ({ output: state.output + "\n" + newOutput })),
+    set((state) => ({ output: `${state.output}\n${newOutput}` })),
   clearOutput: (defaultValue = "") => set({ output: defaultValue }),
   setError: (error) => set({ error }),
   setDirection: (direction) => set({ direction }),

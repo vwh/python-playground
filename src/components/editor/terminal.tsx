@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useStore } from "@/store/useStore";
 import Loader from "@/components/loader";
 
@@ -39,15 +39,18 @@ export default function Terminal() {
     setError(null);
   }, [clearOutput, setError]);
 
-  const commandHandlers: CommandHandlers = {
-    "pip install": async (input: string) => await pipInstall(input),
-    "echo ": async (input: string) =>
-      await setOutput(input.split(" ").slice(1).join(" ")),
-    pwd: getCwd,
-    cwd: getCwd,
-    clear: clearTerminal,
-    cls: clearTerminal
-  };
+  const commandHandlers: CommandHandlers = useMemo(
+    () => ({
+      "pip install": async (input: string) => await pipInstall(input),
+      "echo ": async (input: string) =>
+        await setOutput(input.split(" ").slice(1).join(" ")),
+      pwd: getCwd,
+      cwd: getCwd,
+      clear: clearTerminal,
+      cls: clearTerminal
+    }),
+    [pipInstall, setOutput, getCwd, clearTerminal]
+  );
 
   const handleReplSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {

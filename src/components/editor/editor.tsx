@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
-
 import { useStore } from "@/store/useStore";
-import MonacoEditor, { OnMount } from "@monaco-editor/react";
+
+import MonacoEditor, { type OnMount } from "@monaco-editor/react";
 import Loader from "@/components/loader";
 
 export default function Editor() {
