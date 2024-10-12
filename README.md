@@ -1,9 +1,13 @@
 <div align="center">
-    <h1>Python Playground</h1>
-</div>
+
+<a href="https://sqlite3.online/" target="_blank">
+    <img src="https://github.com/user-attachments/assets/5b8e7f78-ea4b-4529-9895-9e525da3c9d4" alt="tgram" width="128">
+</a>
+
+# Python Playground
 
 <p align="center">
-    Browser-based Python playground built using Web Assembly <a target="_blank" href="https://pyodide.org/en/stable/">Pyodide</a> and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
+    Browser-based Python playground built using WebAssembly <a target="_blank" href="https://pyodide.org/en/stable/">(Pyodide)</a> and ReactJS. Run and test Python code directly in your browser with an interactive and user-friendly interface.
 </p>
 
 <div align="center">
@@ -23,13 +27,13 @@
 
 <br>
 
-<div align="center">
-    <a href="https://vwh.github.io/python-playground" target="_blank">
-        <img src="https://github.com/user-attachments/assets/1a5247a6-9e0d-4d5e-8ee5-51b3aa41e70b" alt="Preview">
-    </a>
+<a href="https://vwh.github.io/python-playground" target="_blank">
+    <img src="https://github.com/user-attachments/assets/1a5247a6-9e0d-4d5e-8ee5-51b3aa41e70b" alt="Preview">
+</a>
+
 </div>
 
-## 🌟 Features
+## Features
 
 <table>
   <tr>
@@ -78,10 +82,10 @@
   </tr>
 </table>
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to open a pull request with your improvements or fixes.
 
-## 📄 License
+## License
 
 Under the MIT License. See [License](https://github.com/vwh/python-playground/blob/main/LICENSE) for more information.
