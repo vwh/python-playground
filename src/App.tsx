@@ -7,7 +7,6 @@ import Editor from "./components/editor/editor";
 import ButtonsNav from "./components/nav-buttons";
 import Stats from "./components/editor/stats";
 import Terminal from "./components/editor/terminal";
-import Ripple from "@/components/ui/ripple";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -36,10 +35,14 @@ function App() {
     return (
       <section className="absolute z-[999] flex h-screen w-full flex-col items-center justify-center gap-3 bg-background text-foreground">
         <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-background md:shadow-xl">
-          <p className="z-10 animate-pulse whitespace-pre-wrap text-center text-2xl font-bold tracking-tighter text-white">
-            Loading
+          <img
+            src="./images/logo.webp"
+            alt="logo"
+            className="h-52 w-52 animate-pulse"
+          />
+          <p className="sm:text-1xl mt-2 animate-pulse whitespace-pre-wrap text-center text-xl font-semibold tracking-tighter text-white">
+            Loading WebAssembly
           </p>
-          <Ripple />
         </div>
       </section>
     );
