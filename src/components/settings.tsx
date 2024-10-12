@@ -21,15 +21,19 @@ import {
   LoaderIcon
 } from "lucide-react";
 
-const SettingsSection: React.FC<{
+interface SettingsSectionProps {
   title: string;
   children: React.ReactNode;
-}> = ({ title, children }) => (
-  <div>
-    <p className="mb-1 text-sm text-muted-foreground">{title}</p>
-    <div className="flex flex-col gap-1">{children}</div>
-  </div>
-);
+}
+
+function SettingsSection({ title, children }: SettingsSectionProps) {
+  return (
+    <div>
+      <p className="mb-1 text-sm text-muted-foreground">{title}</p>
+      <div className="flex flex-col gap-1">{children}</div>
+    </div>
+  );
+}
 
 export default function Settings() {
   const { code, pipInstall, isLibLoading } = useStore();

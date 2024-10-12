@@ -9,7 +9,7 @@ interface CodeStats {
   characters: number;
 }
 
-const Stats = () => {
+export default function Stats() {
   const { code } = useStore();
 
   const stats: CodeStats = useMemo(
@@ -42,24 +42,22 @@ const Stats = () => {
       </div>
     </div>
   );
-};
+}
 
-const StatItem = ({
-  icon,
-  value,
-  label
-}: {
+interface StatItemProps {
   icon: React.ReactNode;
   value: number;
   label: string;
-}) => (
-  <div className="flex items-center gap-1 space-x-1">
-    <div className="flex items-center space-x-1">
-      {icon}
-      <span className="font-medium">{value}</span>
-    </div>
-    <span className="text-xs text-foreground/55">{label}</span>
-  </div>
-);
+}
 
-export default Stats;
+function StatItem({ icon, value, label }: StatItemProps) {
+  return (
+    <div className="flex items-center gap-1 space-x-1">
+      <div className="flex items-center space-x-1">
+        {icon}
+        <span className="font-medium">{value}</span>
+      </div>
+      <span className="text-xs text-foreground/55">{label}</span>
+    </div>
+  );
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useStore } from "@/store/useStore";
+
 import Loader from "@/components/loader";
 
 interface CommandHandlers {
@@ -26,6 +27,7 @@ export default function Terminal() {
     }
   }, []);
 
+  // Scroll to bottom on output change
   useEffect(() => {
     scrollToBottom();
   }, [output, scrollToBottom]);
