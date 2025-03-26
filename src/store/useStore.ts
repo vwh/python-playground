@@ -27,7 +27,7 @@ interface Actions {
 
 const initialState: State = {
   code: `import sys\n\nprint("Python", sys.version)\n\n# https://github.com/vwh/python-playground`,
-  output: "Running Python 3.12.1",
+  output: "Running Python 3.12.7",
   error: null,
   direction: "vertical",
   pyodide: null,

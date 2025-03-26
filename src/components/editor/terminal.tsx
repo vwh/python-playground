@@ -37,7 +37,7 @@ export default function Terminal() {
   }, [runCode]);
 
   const clearTerminal = useCallback(async () => {
-    clearOutput("Running Python 3.12.1");
+    clearOutput("Running Python 3.12.7");
     setError(null);
   }, [clearOutput, setError]);
 

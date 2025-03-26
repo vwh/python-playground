@@ -27,7 +27,7 @@ const ButtonsNav = () => {
   }, [direction, setDirection]);
 
   const handleTerminalClear = useCallback(() => {
-    clearOutput("Running Python 3.12.1");
+    clearOutput("Running Python 3.12.7");
     setError(null);
   }, [clearOutput, setError]);
 
